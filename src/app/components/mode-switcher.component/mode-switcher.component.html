@@ -1,1 +1,8 @@
-<p>mode-switcher.component works!</p>
+<mat-button-toggle-group name="mode" appearance="standard" [hideSingleSelectionIndicator]="true" (change)="onChangeModeEvent.emit($event.value)">
+  <mat-button-toggle value="calendar">
+    <mat-icon class="mat-icon-rtl-mirror">calendar_month</mat-icon>
+  </mat-button-toggle>
+  <mat-button-toggle value="list">
+    <mat-icon class="mat-icon-rtl-mirror">lists</mat-icon>
+  </mat-button-toggle>
+</mat-button-toggle-group>
