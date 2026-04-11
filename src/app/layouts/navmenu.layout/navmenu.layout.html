@@ -16,11 +16,7 @@
     <!-- ============================================================== -->
     <!-- Main Content ||| Outlet (content by page-path (e.g /contacts) )-->
     <!-- ============================================================== -->
-    @if (whatDeviceService.isPhone()) {
-      <button matIconButton aria-label="Close/Open menu" (click)="sidenavComponent.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
-    }
+    <app-header-navbar (toggleMenu)="sidenavComponent.toggle()"></app-header-navbar>
     <ng-content></ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>

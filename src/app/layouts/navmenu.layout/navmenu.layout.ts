@@ -5,16 +5,16 @@ import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/mat
 import { WorkspacePage } from '../../pages/workspace.page/workspace.page';
 import { WhatDeviceService } from '../../services/what-device.service';
 import { NgClass } from '@angular/common';
+import { HeaderNavbarComponent } from '../../components/header-navbar.component/header-navbar.component';
 
 @Component({
   selector: 'app-navmenu-layout',
   imports: [
-    MatIcon,
-    MatIconButton,
     MatSidenav,
     MatSidenavContainer,
     MatSidenavContent,
     NgClass,
+    HeaderNavbarComponent,
   ],
   templateUrl: './navmenu.layout.html',
   styleUrl: './navmenu.layout.scss',
