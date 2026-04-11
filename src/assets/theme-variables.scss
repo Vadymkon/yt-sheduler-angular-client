@@ -1,0 +1,48 @@
+:root {
+  // =======================================
+  //     List of variables for layout
+  // =======================================
+
+  --header-height: 80px;
+  --sidebar-width: 260px;
+  --sidebar-collapsed-width: 80px;
+
+  // header
+  --header-background: #fff;
+  --header-color: #525b69;
+  --header-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+  --brand-color: #161c25;
+
+  // Menu
+  --sidebar-background: #fff;
+  --sidebar-color: #616161;
+  --sidebar-caption: #212121;
+  --sidebar-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+
+  // card block
+
+  //--card-shadow: inset 0 0 0 1px rgba(144, 202, 249, 0.46);
+  --card-shadow: none;
+
+  --soft-bg-level: -80%;
+
+
+  // =======================================
+  //   List of variables for Preset color
+  // =======================================
+
+  //theme
+  --theme-background: #f4f7fa;
+  --theme-font-color: #888;
+  --theme-heading-color: #111;
+
+  --body: #e3f2fd;
+  --primary: #2196f3;
+  --primary-dark: #1c76da;
+  --secondary: #673ab7;
+  --secondary-dark: #542ca7;
+}
+
+[data-theme='dark'] {
+  --body: #111;
+}
