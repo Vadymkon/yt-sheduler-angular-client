@@ -1,27 +1,27 @@
-<mat-sidenav-container class="mainWrapper blue_theme light-theme" autosize autoFocus dir="ltr">
-  <!-- ============================================================== -->
-  <!-- Vertical Sidebar -->
-  <!-- ============================================================== -->
-  <mat-sidenav >
-<!--    #leftsidenav [mode]="isOver ? 'over' : 'side'" [opened]="!isOver"-->
-<!--    (openedChange)="onSidenavOpenedChange($event)" (closedStart)="onSidenavClosedStart()" class="sidebarNav"-->
-<!--    <div class="flex-layout">-->
-<!--      <app-sidebar (toggleMobileNav)="sidenav.toggle()" [showToggle]="isOver"></app-sidebar>-->
-<!--      <ng-scrollbar class="position-relative" style="height: 100%">-->
-<!--        <mat-nav-list class="sidebar-list">-->
-<!--          @for(item of navItems; track item) {-->
-<!--            <app-nav-item [item]="item" (notify)="sidenav.toggle()">-->
-<!--            </app-nav-item>-->
-<!--          }-->
-<!--        </mat-nav-list>-->
-<!--      </ng-scrollbar>-->
-<!--    </div>-->
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenavComponent
+               [ngClass]="{
+               'main-nav': true,
+               'main-nav-phone': whatDeviceService.isPhone()
+               }"
+               mode="side"
+              [opened] = "!whatDeviceService.isPhone()">
+    <!-- ============================================================== -->
+    <!-- Vertical Sidebar -->
+    <!-- ============================================================== -->
+    Start
+
   </mat-sidenav>
 
-  <mat-sidenav-content class="pageWrapper maxWidth contentWrapper" #content>
+  <mat-sidenav-content>
     <!-- ============================================================== -->
     <!-- Main Content ||| Outlet (content by page-path (e.g /contacts) )-->
     <!-- ============================================================== -->
+    @if (whatDeviceService.isPhone()) {
+      <button matIconButton aria-label="Close/Open menu" (click)="sidenavComponent.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    }
     <!-- <router-outlet/>-->
     <app-workspace/>
   </mat-sidenav-content>
