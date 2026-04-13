@@ -1,0 +1,62 @@
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  background-color: transparent !important;
+}
+
+mat-sidenav.main-nav {
+  background-color: var(--sidebar-background);
+  --mdc-drawer-container-shape: 0px;
+}
+
+mat-sidenav-container mat-sidenav.mat-drawer {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+mat-sidenav.main-nav-phone {
+  width: 90vw;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.dev/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+
+/* Выстраиваем картинку и текст в одну линию */
+.custom-channel-content {
+  display: flex;
+  align-items: center;
+  gap: 16px; /* Отступ между аватаркой и текстом */
+  width: 100%;
+}
+
+/* Делаем картинку круглой */
+.channel-avatar {
+  border-radius: 50%;
+  object-fit: cover;
+  min-width: 40px;
+  height: 40px;
+}
+
+/* Группируем заголовок и подзаголовок друг под другом */
+.channel-text {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Возвращаем стандартные стили Material для текста */
+.channel-title {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.channel-subtitle {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+}
