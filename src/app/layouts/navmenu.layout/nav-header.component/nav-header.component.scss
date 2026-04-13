@@ -1,0 +1,42 @@
+.channel-profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* Center everything horizontally */
+  text-align: center;
+  padding: 24px 16px 16px; /* Padding for top, left, and right */
+}
+
+.channel-avatar {
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  margin-bottom: 16px; /* Margin between the avatar and the text */
+  /* The logo in the image has a slight shadow/depth, we can add: */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.channel-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px; /* Gap between the title and the subtitle */
+}
+
+.channel-title {
+  font-size: 16px;
+  font-weight: 500; /* Make the font slightly bolder, like in the image */
+  color: #0f0f0f; /* Dark grey/black color */
+  line-height: 24px;
+}
+
+.channel-subtitle {
+  font-size: 12px; /* The subtitle is noticeably smaller than the title */
+  color: #606060; /* Classic grey color for secondary text */
+  line-height: 16px;
+}
+
+.profile-divider {
+  width: 80%; /* The divider is not full-width in the screenshot */
+  margin: 0 auto; /* Center the divider */
+  opacity: 0.5; /* Make it slightly less visible */
+}

@@ -7,6 +7,12 @@ import { fakeChannels } from '../../../assets/fakedata';
 import { MatListModule, MatSelectionList } from '@angular/material/list';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { MatRipple } from '@angular/material/core';
+import { ItemSelectListComponent } from './item-select-list.component/item-select-list.component';
+import { NavHeaderComponent } from './nav-header.component/nav-header.component';
+import { BottomActionsNavbarComponent } from './bottom-actions-navbar.component/bottom-actions-navbar.component';
+import { NavLogoComponent } from './nav-logo.component/nav-logo.component';
 @Component({
   selector: 'app-navmenu-layout',
   imports: [
@@ -16,10 +22,10 @@ import { MatIconButton } from '@angular/material/button';
     NgClass,
     HeaderNavbarComponent,
     MatListModule,
-    MatSelectionList,
-    NgOptimizedImage,
-    MatIcon,
-    MatIconButton,
+    ItemSelectListComponent,
+    NavHeaderComponent,
+    BottomActionsNavbarComponent,
+    NavLogoComponent,
   ],
   templateUrl: './navmenu.layout.html',
   styleUrl: './navmenu.layout.scss',

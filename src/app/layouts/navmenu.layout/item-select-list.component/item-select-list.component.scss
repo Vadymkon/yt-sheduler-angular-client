@@ -1,0 +1,61 @@
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.custom-channel-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.avatar-wrapper {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.channel-avatar-img {
+  object-fit: cover;
+}
+
+.section-title {
+  font-size: 13px; /* Smaller font size */
+  font-weight: 600; /* Semi-bold weight */
+  color: #8e8e8e; /* Muted gray color */
+  text-transform: uppercase; /* ALL CAPS */
+  letter-spacing: 0.5px; /* Slight spacing between letters */
+  margin: 16px 16px 12px 16px; /* Top, right, bottom, left margins */
+  /* Remove default h2 margin if necessary */
+  padding: 0;
+}
+.add-button-container {
+  padding: 16px; /* Keeps the padding around the edges of the row */
+}
+
+.add-button {
+  width: 100% !important; /* <--- Makes the button stretch full width */
+  background-color: #dce4ff !important;
+  color: #001a41 !important;
+  border-radius: 100px !important;
+  height: 40px;
+  font-weight: 500;
+  font-size: 14px;
+  box-shadow: none !important;
+}
+
+/* Ensure the icon and text stay centered when stretched */
+.add-button ::ng-deep .mdc-button__label {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* <--- Centers the content horizontally */
+  gap: 8px;
+}
+
+.half-transparent {
+  opacity: 0.4;
+}

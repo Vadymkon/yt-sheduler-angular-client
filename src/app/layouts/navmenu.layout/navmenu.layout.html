@@ -9,20 +9,11 @@
     <!-- ============================================================== -->
     <!-- Vertical Sidebar -->
     <!-- ============================================================== -->
-    <mat-selection-list>
-      @for (channel of fakeChannels; track $index)
-      {
-        <mat-list-option togglePosition="before">
-          <img matListItemAvatar width="100" height="100" [ngSrc]=" channel.photoUrl ?? 'https://material.angular.dev/assets/img/examples/shiba1.jpg' "/>
-          <span matListItemTitle>{{ channel.title }}</span>
-          <span matListItemLine>Second line</span>
-          <button matListItemIcon matIconButton aria-label="Close/Open menu" >
-            <mat-icon>settings</mat-icon>
-          </button>
-        </mat-list-option>
-
-      }
-    </mat-selection-list>
+    <app-nav-logo></app-nav-logo>
+    <app-nav-header [channel]="fakeChannels[0]"></app-nav-header>
+    <app-item-select-list></app-item-select-list>
+    <div class="spacer"></div>
+    <app-bottom-actions-navbar></app-bottom-actions-navbar>
   </mat-sidenav>
 
   <mat-sidenav-content>

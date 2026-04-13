@@ -1,0 +1,14 @@
+<h2 class="section-title">Channels</h2>
+<ul class="custom-channel-list">
+  @for (channel of fakeChannels; track $index) {
+    <li>
+      <app-channel-item [channel]="channel" (toggleEvent)="chooseChannel(channel, $event)"/>
+    </li>
+    <mat-divider class="half-transparent"></mat-divider>
+  }
+  <div class="add-button-container">
+    <button matButton="tonal" class="add-button">
+      {{ls.t.add_channel}} <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</ul>
