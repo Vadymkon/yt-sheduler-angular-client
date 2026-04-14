@@ -6,6 +6,10 @@ export default {
     settings: "Settings",
     feedback: "Send Feedback",
     channels: "Channels",
+    feedback_tip: "Thank you for using this application. Share your impression with us!",
+    feedback_template: "This application made me feel...",
+    close: "Close",
+    send: "Send",
   },
   "ua": {
     languageName: "Українська",
@@ -14,6 +18,10 @@ export default {
     settings: "Налаштування",
     feedback: "Надіслати відгук",
     channels: "Канали",
+    feedback_tip: "Thank you for using this application. Share your impression with us!",
+    feedback_template: "This application uses made me feel...",
+    close: "Close",
+    send: "Send",
   },
   "jp": {
     languageName: "日本語",
@@ -22,5 +30,9 @@ export default {
     settings: "設定",
     feedback: "フィードバックを送信",
     channels: "チャンネル",
+    feedback_tip: "Thank you for using this application. Share your impression with us!",
+    feedback_template: "This application uses made me feel...",
+    close: "Close",
+    send: "Send",
   },
 }

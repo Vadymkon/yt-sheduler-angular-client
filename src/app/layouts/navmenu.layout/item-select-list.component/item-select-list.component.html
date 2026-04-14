@@ -1,3 +1,4 @@
+<!-- LIST OF CHANNELS -->
 <h2 class="section-title">{{ ls.t.channels }}</h2>
 <ul class="custom-channel-list">
   @for (channel of fakeChannels; track $index) {
@@ -6,6 +7,7 @@
     </li>
     <mat-divider class="half-transparent"></mat-divider>
   }
+  <!-- ADD NEW CHANNEL BUTTON-->
   <div class="add-button-container">
     <button matButton="tonal" class="add-button">
       {{ls.t.add_channel}} <mat-icon>add</mat-icon>

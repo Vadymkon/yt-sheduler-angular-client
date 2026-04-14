@@ -1,0 +1,13 @@
+.sidebar-footer-button {
+  width: 100%;
+  border-radius: 0 !important;
+  padding: 0;
+  border: none;
+  text-align: start;
+}
+
+:host ::ng-deep {
+  .mat-mdc-select-arrow-wrapper {
+    display: none !important;
+  }
+}

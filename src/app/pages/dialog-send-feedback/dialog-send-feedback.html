@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>{{ls.t.feedback}}</h2>
+<mat-dialog-content>
+  <p>{{ls.t.feedback_tip}}</p>
+  <mat-form-field class="wide-widget">
+    <textarea #user_feedback matInput placeholder="{{ls.t.feedback_template}}" cdkTextareaAutosize></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button matButton (click)="onNoClick()">{{ ls.t.close }}</button>
+  <button matButton="filled" (click)="sendFeedback(user_feedback.value)">{{ ls.t.send }}</button>
+</mat-dialog-actions>

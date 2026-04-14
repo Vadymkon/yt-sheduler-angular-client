@@ -1,21 +1,22 @@
 import { Component, inject } from '@angular/core';
 import {
-  MatActionList,
   MatDivider,
-  MatList,
-  MatListItem,
   MatListModule,
 } from '@angular/material/list';
-import { LangService } from '../../../services/lang.service';
-import { MatIcon } from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
+import { ChangeLanguageComponent } from './change-language.component/change-language.component';
+import { SendFeedbackComponent } from './send-feedback.component/send-feedback.component';
 
 @Component({
   selector: 'app-bottom-actions-navbar',
-  imports: [MatDivider, MatIcon, MatListModule, MatSelectModule],
+  imports: [
+    MatDivider,
+    MatListModule,
+    MatSelectModule,
+    ChangeLanguageComponent,
+    SendFeedbackComponent,
+  ],
   templateUrl: './bottom-actions-navbar.component.html',
   styleUrl: './bottom-actions-navbar.component.scss',
 })
-export class BottomActionsNavbarComponent {
-  ls = inject(LangService);
-}
+export class BottomActionsNavbarComponent {}
