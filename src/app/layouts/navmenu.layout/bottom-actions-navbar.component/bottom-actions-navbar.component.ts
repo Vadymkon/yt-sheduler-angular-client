@@ -8,11 +8,11 @@ import {
 } from '@angular/material/list';
 import { LangService } from '../../../services/lang.service';
 import { MatIcon } from '@angular/material/icon';
-import { MatButton } from '@angular/material/button';
+import {MatSelectModule} from '@angular/material/select';
 
 @Component({
   selector: 'app-bottom-actions-navbar',
-  imports: [MatDivider, MatIcon, MatListModule],
+  imports: [MatDivider, MatIcon, MatListModule, MatSelectModule],
   templateUrl: './bottom-actions-navbar.component.html',
   styleUrl: './bottom-actions-navbar.component.scss',
 })
