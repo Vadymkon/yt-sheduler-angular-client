@@ -1,7 +1,15 @@
 <h2 mat-dialog-title>{{ls.t.schedule}}</h2>
 
 <mat-dialog-content>
-  <p>DEBUG: HERE IS YOUR SCHEDULE</p>
+  <p>Publishing Schedule</p>
+  <div class="publications-list">
+    @for (day of channelData.shedule?.schedule; track day.dayOfWeek) {
+      <div class="publication-row">
+        <b class="label-text">{{ weekS.weekName(+day.dayOfWeek) }}:</b>
+        <span>{{ day.times.map(formatTime).join(' - ') }}</span>
+      </div>
+    }
+  </div>
   <button matButton="filled" (click)="openDialogChangeSchedule()">{{ ls.t.changeSchedule }}</button>
 </mat-dialog-content>
 

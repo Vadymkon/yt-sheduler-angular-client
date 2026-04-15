@@ -7,6 +7,20 @@ import { LangService } from './lang.service';
 export class WeekService {
   private readonly ls = inject(LangService);
 
+  weekName(id: number)
+  {
+    const days = [
+      this.ls.t.monday,
+      this.ls.t.tuesday,
+      this.ls.t.wednesday,
+      this.ls.t.thursday,
+      this.ls.t.friday,
+      this.ls.t.saturday,
+      this.ls.t.sunday
+    ];
+    return days[id-1];
+  }
+
   get weekDays() {
     // get current state of ls
     const t = this.ls.t;
