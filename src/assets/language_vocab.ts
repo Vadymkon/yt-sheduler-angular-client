@@ -22,6 +22,7 @@ export default {
     cancel: "Cancel",
     pubPerDay: "Publications/Day",
     publishingSchedule: "Publishing Schedule",
+    publication: "Publication",
   },
   "ua": {
     languageName: "Українська",
@@ -46,6 +47,7 @@ export default {
     cancel: "Скасувати",
     pubPerDay: "Публікацій/день",
     publishingSchedule: "Розклад публікацій",
+    publication: "Публікація",
   },
   "jp": {
     languageName: "日本語",
@@ -70,5 +72,6 @@ export default {
     cancel: "キャンセル",
     pubPerDay: "投稿数/日",
     publishingSchedule: "投稿スケジュール",
+    publication: "投稿",
   },
 }

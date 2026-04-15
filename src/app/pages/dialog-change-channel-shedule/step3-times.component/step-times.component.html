@@ -7,7 +7,7 @@
     <div class="publications-list" formArrayName="times">
       @for (ctrl of timesControls; track $index) {
         <div class="publication-row">
-          <span class="label-text">Publication {{ $index + 1 }}:</span>
+          <span class="label-text">{{ ls.t.publication }} {{ $index + 1 }}:</span>
 
           <mat-form-field class="compact-timepicker" appearance="outline" subscriptSizing="dynamic">
             <input matInput [matTimepicker]="picker" [formControlName]="$index">
