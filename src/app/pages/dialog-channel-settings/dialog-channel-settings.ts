@@ -26,7 +26,6 @@ import { DatePipe } from '@angular/common';
     MatDialogTitle,
     MatDialogContent,
     MatDialogActions,
-    DatePipe,
   ],
   templateUrl: './dialog-channel-settings.html',
   styleUrl: './dialog-channel-settings.scss',
