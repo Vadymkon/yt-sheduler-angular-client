@@ -1,6 +1,6 @@
-<button mat-list-item class="sidebar-footer-button">
+<button mat-list-item class="sidebar-footer-button" (click)="languageSelect.toggle()">
   <mat-icon matListItemIcon>language</mat-icon>
-  <mat-select #languageSelect (selectionChange)="ls.changeLang(languageSelect.value)" [value]="ls.t.languageName">
+  <mat-select #languageSelect (click)="$event.stopPropagation()" (selectionChange)="ls.changeLang(languageSelect.value)" [value]="ls.t.languageName">
     <mat-select-trigger>{{ ls.t.language }}</mat-select-trigger>
     @for (language of ls.avaliableLangs!.keys(); track $index)
     {

@@ -39,6 +39,7 @@ export class LangService {
 
     // change language object
     this.t = language_vocab[codeOfLangTypisized] ?? language_vocab.en;
+    this.codeOfLanguage = codeOfLang;
   }
 
   getLanguageCodeFromURL() {
@@ -56,5 +57,9 @@ export class LangService {
   getCodeOfLanguageIframe() {
     this.codeOfLanguage = this.codeOfLanguage ?? 'en';
     return this.codeOfLanguage.replace('-', '_');
+  }
+
+  getLangCode() {
+    return this.codeOfLanguage;
   }
 }

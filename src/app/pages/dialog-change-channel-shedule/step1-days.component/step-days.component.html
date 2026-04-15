@@ -1,0 +1,12 @@
+<div [formGroup]="group()">
+  <mat-chip-listbox aria-label="Days selection" formControlName="dayControl" multiple>
+    @for (day of weekS.weekDays; track day.id) {
+      <mat-chip-option [value]="day.id">
+        {{day.label}}
+      </mat-chip-option>
+    }
+  </mat-chip-listbox>
+  <div>
+    <button matButton matStepperNext>Next</button>
+  </div>
+</div>

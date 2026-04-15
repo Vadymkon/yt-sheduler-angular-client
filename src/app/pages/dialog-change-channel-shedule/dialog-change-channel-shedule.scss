@@ -1,0 +1,70 @@
+p {
+  margin: 0;
+}
+
+::ng-deep .mat-mdc-standard-chip .mdc-evolution-chip__graphic {
+  display: none !important;
+}
+
+::ng-deep .mat-mdc-standard-chip .mdc-evolution-chip__text-label:not(:only-child) {
+  padding-left: 12px;
+}
+
+.addPadding {
+  padding: 16px 0;
+}
+
+.vertical-radio-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.time-selectors {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vertical-radio-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.publications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 16px;
+}
+
+/* Новый класс для ровной строки */
+.publication-row {
+  display: flex;
+  align-items: center;
+}
+
+.label-text {
+  color: #555;
+  font-size: 14px;
+  min-width: 110px; /* ИСПРАВЛЕНО: было 101vw. Теперь текст занимает 110px */
+}
+
+/* Стилизация самого поля ввода времени */
+.compact-timepicker {
+  --mat-form-field-container-height: 36px;
+
+  ::ng-deep {
+    /* Центрируем содержимое */
+    .mat-mdc-form-field-infix {
+      min-height: 36px;
+      padding: 0 !important;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Выравниваем текст внутри инпута */
+    input.mat-mdc-input-element {
+      margin-top: 0;
+    }
+  }
+}

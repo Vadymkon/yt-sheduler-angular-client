@@ -1,0 +1,10 @@
+<div [formGroup]="group()">
+  <mat-form-field class="wide-widget">
+    <mat-label>{{ls.t.pubPerDay}}</mat-label>
+    <input (change)="updateControllersEvent.emit()" type="number" matInput formControlName="countControl" placeholder="3">
+  </mat-form-field>
+  <div>
+    <button matButton matStepperPrevious>Back</button>
+    <button matButton matStepperNext [disabled]="group().get('countControl')?.invalid" (click)="updateControllersEvent.emit()">Next</button>
+  </div>
+</div>

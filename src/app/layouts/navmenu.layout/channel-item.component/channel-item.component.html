@@ -9,7 +9,7 @@
     <span class="channel-title">{{ channel().title }}</span>
     <span class="channel-subtitle">Second line</span>
   </div>
-  <button mat-icon-button aria-label="Settings" (click)="$event.stopPropagation()" (mousedown)="$event.stopPropagation()">
+  <button mat-icon-button aria-label="Settings" (click)="$event.stopPropagation(); openChannelSettings();" (mousedown)="$event.stopPropagation()">
     <mat-icon>settings</mat-icon>
   </button>
 </div>

@@ -1,0 +1,24 @@
+<div [formGroup]="group()">
+  <mat-radio-group class="vertical-radio-group" formControlName="timePatternControl">
+    <mat-radio-button value="auto">Auto</mat-radio-button>
+    <mat-radio-button value="manual">Choose Manually</mat-radio-button>
+  </mat-radio-group>
+  @if (group().value.timePatternControl === 'manual') {
+    <div class="publications-list" formArrayName="times">
+      @for (ctrl of timesControls; track $index) {
+        <div class="publication-row">
+          <span class="label-text">Publication {{ $index + 1 }}:</span>
+
+          <mat-form-field class="compact-timepicker" appearance="outline" subscriptSizing="dynamic">
+            <input matInput [matTimepicker]="picker" [formControlName]="$index">
+            <mat-timepicker-toggle matIconSuffix [for]="picker"/>
+            <mat-timepicker #picker/>
+          </mat-form-field>
+        </div>
+      }
+    </div>
+  }
+  <div>
+    <button matButton matStepperPrevious>Back</button>
+  </div>
+</div>

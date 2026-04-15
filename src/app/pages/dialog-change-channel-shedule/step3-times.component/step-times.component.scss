@@ -1,0 +1,52 @@
+/* Remove default margins from paragraphs if any remain */
+p {
+  margin: 0;
+}
+
+/* Stack radio buttons vertically */
+.vertical-radio-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Container for the list of time selectors */
+.publications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 16px;
+}
+
+/* Layout for a single publication row: label + input */
+.publication-row {
+  display: flex;
+  align-items: center;
+}
+
+/* Style for the "Publication X:" text labels */
+.label-text {
+  color: #555;
+  font-size: 14px;
+  min-width: 110px; /* Ensures all inputs are aligned in a column */
+}
+
+/* Compact styling for the Angular Material timepicker field */
+.compact-timepicker {
+  width: 150px; /* Fixed width to prevent stretching */
+  --mat-form-field-container-height: 36px;
+
+  ::ng-deep {
+    /* Center content vertically within the form field infix */
+    .mat-mdc-form-field-infix {
+      min-height: 36px;
+      padding: 0 !important;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Reset input alignment to match the custom height */
+    input.mat-mdc-input-element {
+      margin-top: 0;
+    }
+  }
+}

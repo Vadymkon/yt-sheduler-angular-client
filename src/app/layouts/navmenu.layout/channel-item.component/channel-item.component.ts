@@ -1,10 +1,12 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
 import { MatRipple } from '@angular/material/core';
 import { NgOptimizedImage } from '@angular/common';
 import { Channel } from '../../../models/channel.model';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogChannelSettings } from '../../../pages/dialog-channel-settings/dialog-channel-settings';
 
 @Component({
   selector: 'app-channel-item',
@@ -19,6 +21,11 @@ import { Channel } from '../../../models/channel.model';
   styleUrl: './channel-item.component.scss',
 })
 export class ChannelItemComponent {
+  readonly dialog = inject(MatDialog);
   channel = input.required<Channel>();
   toggleEvent = output<boolean>();
+
+  openChannelSettings() {
+    this.dialog.open(DialogChannelSettings);
+  }
 }
