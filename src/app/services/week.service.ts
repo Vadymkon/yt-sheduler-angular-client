@@ -12,15 +12,15 @@ export class WeekService {
     const t = this.ls.t;
     const code = this.ls.getLangCode();
 
-    // days template
+    // days template ISO format
     const days = [
-      { id: 'mon', label: t.mon },
-      { id: 'tue', label: t.tue },
-      { id: 'wed', label: t.wed },
-      { id: 'thu', label: t.thu },
-      { id: 'fri', label: t.fri },
-      { id: 'sat', label: t.sat },
-      { id: 'sun', label: t.sun }
+      { id: '1', label: t.mon },
+      { id: '2', label: t.tue },
+      { id: '3', label: t.wed },
+      { id: '4', label: t.thu },
+      { id: '5', label: t.fri },
+      { id: '6', label: t.sat },
+      { id: '7', label: t.sun }
     ];
 
     // mix if en

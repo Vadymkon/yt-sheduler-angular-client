@@ -12,6 +12,7 @@ import {
 import { MatInput, MatInputModule} from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { DialogChangeChannelShedule } from '../dialog-change-channel-shedule/dialog-change-channel-shedule';
+import { Channel } from '../../models/channel.model';
 
 
 @Component({
@@ -29,12 +30,13 @@ export class DialogChannelSettings {
   readonly ls = inject(LangService);
   readonly dialog = inject(MatDialog);
   readonly dialogRef = inject(MatDialogRef<DialogChannelSettings>);
+  readonly channelData = inject<Channel>(MAT_DIALOG_DATA);
   onNoClick() {
     this.dialogRef.close();
   }
 
   openDialogChangeSchedule() {
-    this.dialog.open(DialogChangeChannelShedule);
+    this.dialog.open(DialogChangeChannelShedule, {data: this.channelData});
     this.dialogRef.close();
   }
 }

@@ -1,6 +1,8 @@
+import { SchedulePattern } from './schedule-pattern.model';
+
 export class Channel {
   title!: string;
   photoUrl?: string;
-  shedule?: void;
+  shedule?: SchedulePattern;
   platform?: string;
 }
