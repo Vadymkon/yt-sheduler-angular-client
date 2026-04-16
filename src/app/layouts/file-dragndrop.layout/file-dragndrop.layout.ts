@@ -3,6 +3,7 @@ import { MatDialogContent, MatDialogRef } from '@angular/material/dialog';
 import { WhatDeviceService } from '../../services/what-device.service';
 import { MatIcon } from '@angular/material/icon';
 import { FilesTemporaryService } from '../../services/files-temporary-service';
+import { LangService } from '../../services/lang.service';
 
 @Component({
   selector: 'app-file-dragndrop',
@@ -13,6 +14,7 @@ import { FilesTemporaryService } from '../../services/files-temporary-service';
 export class FileDragndropLayout {
   readonly whatDeviceService = inject(WhatDeviceService);
   readonly fileTempService = inject(FilesTemporaryService);
+  readonly ls = inject(LangService);
   isFileDraggedOver: boolean = false;
 
   onFileDrop($event: DragEvent) {
@@ -22,8 +24,13 @@ export class FileDragndropLayout {
 
     const files = $event.dataTransfer?.files;
     if (files) {
-      this.fileTempService.files = Array.from(files).map(x=> x.name).join(', ');
-      console.log('Files dropped:', files);
+      // DEBUG: TO-DO: this 'filter'-logic should be in service, not here
+      let onlyVideos = Array.from(files).filter(file =>
+        file.type.startsWith('video/') ||
+        ['.mp4', '.mov', '.avi', '.mkv'].some(ext => file.name.toLowerCase().endsWith(ext))
+      );
+      this.fileTempService.files = onlyVideos.map(video => video.name).join(', ');
+      console.log('Files dropped:', onlyVideos);
     }
   }
 

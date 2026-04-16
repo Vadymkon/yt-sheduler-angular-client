@@ -20,6 +20,6 @@ export class FileGetterComponent {
     const dragEvent = $event as DragEvent;
     const files = target.files || dragEvent.dataTransfer?.files;
 
-    if (files?.length) this.fileTempService.files = files[0].name;
+    if (files?.length) this.fileTempService.files = Array.from(files).map(x=> x.name).join(', ');
   }
 }
