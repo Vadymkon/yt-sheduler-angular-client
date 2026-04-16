@@ -4,10 +4,11 @@ import { WorkspacePage } from './pages/workspace.page/workspace.page';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { WhatDeviceService } from './services/what-device.service';
 import { NavmenuLayout } from './layouts/navmenu.layout/navmenu.layout';
+import { FileDragndropLayout } from './layouts/file-dragndrop.layout/file-dragndrop.layout';
 
 @Component({
   selector: 'app-root',
-  imports: [WorkspacePage, MatSidenavModule, NavmenuLayout],
+  imports: [WorkspacePage, MatSidenavModule, NavmenuLayout, FileDragndropLayout],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

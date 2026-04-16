@@ -1,0 +1,46 @@
+styled-field {
+  max-width: 1200px;
+  display: block;
+}
+
+::ng-deep .styled-field input.mat-mdc-input-element {
+  flex-grow: 1;
+}
+
+::ng-deep .styled-field .mat-mdc-form-field-flex {
+  border-radius: 28px !important;
+  padding: 8px 16px !important;
+  background-color: white;
+
+}
+
+::ng-deep .styled-field .mat-mdc-text-field-wrapper {
+  border-radius: 50px !important;
+  background-color: white !important;
+  padding: 0 16px !important;
+}
+
+::ng-deep .styled-field .mat-mdc-form-field-notched-outline {
+  border-color: #e0e0e0 !important;
+}
+
+::ng-deep .styled-field .mat-mdc-form-field-notched-outline {
+  display: none;
+}
+
+::ng-deep .styled-field .mat-mdc-text-field-wrapper {
+  border: 1px solid #dadce0 !important;
+}
+
+::ng-deep .styled-field .mat-mdc-form-field-focus-indicator {
+  display: none !important;
+}
+
+::ng-deep .styled-field .mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}
+
+::ng-deep .styled-field .mat-mdc-text-field-wrapper .mdc-line-ripple::before,
+::ng-deep .styled-field .mat-mdc-text-field-wrapper .mdc-line-ripple::after {
+  display: none !important;
+}

@@ -1,0 +1,119 @@
+/* Overlay container - now relative to the parent content area */
+.fileDragNDrop-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background matching theme */
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+/* Modal-like content window */
+.drop-zone-content {
+  width: 90%;
+  max-width: 800px;
+  height: 80%;
+  background: var(--theme-background); /* Theme background variable */
+  border-radius: 20px;
+  padding: 15px;
+  box-sizing: border-box;
+  pointer-events: auto;
+}
+
+/* Icon styling */
+.drop-icon {
+  font-size: 80px;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+.drop-title {
+  font-family: sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.drop-subtitle {
+  font-size: 18px;
+  margin-top: 8px;
+  opacity: 0.7;
+}
+
+/* --- MAIN BLOCK STYLES (Border-free base) --- */
+.drop-zone-border {
+  width: 100%;
+  height: 100%;
+  /* Using relative positioning for the pseudo-element border */
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden; /* Ensures dashed lines stay within rounded corners */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- ANIMATED BORDER VIA PSEUDO-ELEMENT --- */
+.drop-zone-border::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 15px; /* Matches parent radius */
+
+  /* Create dashed lines using repeating linear gradients */
+  /* This allows control over dash length and spacing gaps */
+  background-image: linear-gradient(90deg, #3390ec 50%, transparent 50%),
+  linear-gradient(90deg, #3390ec 50%, transparent 50%),
+  linear-gradient(0deg, #3390ec 50%, transparent 50%),
+  linear-gradient(0deg, #3390ec 50%, transparent 50%);
+  background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+
+  /* Dash size: 20px stroke width, 3px line thickness */
+  background-size: 20px 3px, 20px 3px, 3px 20px, 3px 20px;
+
+  /* Position gradients along the edges (top, bottom, left, right) */
+  background-position: 0 0, 100% 100%, 0 100%, 100% 0;
+
+  /* Apply the animation */
+  animation: border-dance 0.8s infinite linear;
+}
+
+/* --- CONTENT STYLING (To sit above the border) --- */
+.centered-content {
+  text-align: center;
+  color: #3390ec;
+  z-index: 1; /* Lifts text above the pseudo-element border */
+}
+
+/* --- KEYFRAMES FOR THE MARCHING ANTS EFFECT --- */
+@keyframes border-dance {
+  0% {
+    /* Initial positions of all 4 gradients */
+    background-position:
+      0 0,          /* Top (horizontal) */
+      100% 100%,    /* Bottom (horizontal) */
+      0 100%,       /* Left (vertical) */
+      100% 0;       /* Right (vertical) */
+  }
+  100% {
+    /* Shift each line by 20px (the size of one dash step) */
+    background-position:
+      20px 0,                 /* Top: moves right */
+      calc(100% - 20px) 100%, /* Bottom: moves left */
+      0 calc(100% - 20px),    /* Left: moves up */
+      100% 20px;              /* Right: moves down */
+  }
+}

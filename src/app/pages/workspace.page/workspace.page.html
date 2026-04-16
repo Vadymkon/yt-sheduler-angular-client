@@ -1,2 +1,8 @@
 <app-mode-switcher (onChangeModeEvent)="modeChangedLog($event)"></app-mode-switcher>
 <p>workspace.page works!</p>
+
+<div [class]="whatDeviceService.isPhone() ? 'footer' : 'centered-element'">
+  <app-file-getter></app-file-getter>
+</div>
+
+<span class="footer">Footer</span>

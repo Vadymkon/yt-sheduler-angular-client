@@ -23,6 +23,10 @@ export default {
     pubPerDay: "Publications/Day",
     publishingSchedule: "Publishing Schedule",
     publication: "Publication",
+    pasteGDriveLink: "Paste Goodle Drive Link",
+    getFileHint: "Or Drag&Drop video files (MP4, MOV, max 2GB)",
+    import: "Import",
+    upload: "Upload",
   },
   "ua": {
     languageName: "Українська",
@@ -48,6 +52,10 @@ export default {
     pubPerDay: "Публікацій/день",
     publishingSchedule: "Розклад публікацій",
     publication: "Публікація",
+    pasteGDriveLink: "Paste Goodle Drive Link",
+    getFileHint: "Or Drag&Drop video files (MP4, MOV, max 2GB)",
+    import: "Import",
+    upload: "Upload",
   },
   "jp": {
     languageName: "日本語",
@@ -73,5 +81,9 @@ export default {
     pubPerDay: "投稿数/日",
     publishingSchedule: "投稿スケジュール",
     publication: "投稿",
+    pasteGDriveLink: "Paste Goodle Drive Link",
+    getFileHint: "Or Drag&Drop video files (MP4, MOV, max 2GB)",
+    import: "Import",
+    upload: "Upload",
   },
 }
