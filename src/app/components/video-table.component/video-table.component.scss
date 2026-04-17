@@ -1,12 +1,8 @@
-.example-container {
-  height: 85vh;
-  overflow: auto;
-}
 
 .select-column {
   padding: unset;
 }
-.example-container table {
+table {
   max-width: 70%;
   background-color: transparent;
 }
@@ -22,9 +18,15 @@
 }
 
 .table-restricter {
-  height: 80%;
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
 }
-
+:host-context(.mat-mdc-dialog-content) .table-restricter {
+  margin: 0;
+  width: 100%;
+  max-width: none;
+}
 .mat-column-select {
   overflow: initial;
 }

@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>{{ls.t.videos}}</h2>
+<mat-dialog-content>
+  <app-video-table [videos]="videosData"></app-video-table>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button matButton="filled" (click)="onNoClick()">{{ ls.t.close }}</button>
+</mat-dialog-actions>

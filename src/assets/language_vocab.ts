@@ -28,6 +28,7 @@ export default {
     upload: "Upload",
     dropVideos: "Drop videos here to publish them",
     inAQuickWay: "in a quick way",
+    videos: "Videos",
   },
   "ua": {
     languageName: "Українська",
@@ -58,6 +59,7 @@ export default {
     upload: "Завантажити",
     dropVideos: "Перетягніть відео сюди, щоб опублікувати їх",
     inAQuickWay: "швидким способом",
+    videos: "Videos",
   },
   "ja": {
     languageName: "日本語",
@@ -88,5 +90,6 @@ export default {
     upload: "アップロード",
     dropVideos: "ここに動画をドロップして公開",
     inAQuickWay: "クイックな方法で",
+    videos: "Videos",
   },
 }

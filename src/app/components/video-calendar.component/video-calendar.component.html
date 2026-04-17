@@ -39,13 +39,13 @@
           }
         }
         @for (day of week; track day) {
-          <td ngGridCell [(selected)]="day.selected">
+          <td ngGridCell [(selected)]="day.selected" (click)="openSeveralVideosDialog($event, dayVideos)">
             <button ngGridCellWidget [attr.aria-label]="day.ariaLabel" [attr.data-day]="day.day">
               <span class="day-number">{{ day.displayName }}</span>
 
               @let dayVideos = getVideosForDate(day.date);
               @if (dayVideos.length > 0) {
-                <div class="video-indicator" (click)="onVideoIconClick($event, dayVideos)">
+                <div class="video-indicator"> <!--(click)="onVideoIconClick($event, dayVideos)"-->
 
                   <span class="material-symbols-outlined filled">videocam</span>
 

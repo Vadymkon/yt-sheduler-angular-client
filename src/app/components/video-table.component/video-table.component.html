@@ -1,6 +1,5 @@
-<div class="centered-element table-restricter">
-  <cdk-virtual-scroll-viewport class="example-container" [itemSize]="52" [maxBufferPx]="1200" [minBufferPx]="400">
-    <table mat-table [dataSource]="videoDataSource()" class="mat-elevation-z8 demo-table" matSort>
+  <div class="table-restricter">
+  <table mat-table [dataSource]="videoDataSource()" class="mat-elevation-z8 demo-table" matSort>
       <!-- Checkbox Selection Template -->
       <ng-container matColumnDef="selection">
         <th class="select-column" mat-header-cell *matHeaderCellDef>
@@ -59,5 +58,4 @@
                    showFirstLastButtons
                    aria-label="Select page of periodic elements">
     </mat-paginator>
-  </cdk-virtual-scroll-viewport>
 </div>

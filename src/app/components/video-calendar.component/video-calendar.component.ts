@@ -17,6 +17,9 @@ import {
 } from '@angular/material/core';
 import {Grid, GridRow, GridCell, GridCellWidget} from '@angular/aria/grid';
 import { Video } from '../../models/video.model';
+import { DialogChangeChannelShedule } from '../../pages/dialog-change-channel-shedule/dialog-change-channel-shedule';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogSeveralVideos } from '../../pages/dialog-several-videos/dialog-several-videos';
 
 const DAYS_PER_WEEK = 7;
 
@@ -36,6 +39,7 @@ interface CalendarCell<D = any> {
   providers: [provideNativeDateAdapter()],
 })
 export class VideoCalendarComponent<D> {
+  readonly dialog = inject(MatDialog);
   videos = input.required<Video[]>();
   private readonly _dayButtons = viewChildren(GridCellWidget);
   private readonly _dateAdapter = inject<DateAdapter<D>>(DateAdapter, {optional: true})!;
@@ -196,5 +200,11 @@ export class VideoCalendarComponent<D> {
   getVideosForDate(date: D): Video[] {
     const key = this._dateAdapter.format(date, 'yyyy-MM-dd');
     return this.videosByDate().get(key) || [];
+  }
+
+  openSeveralVideosDialog($event: PointerEvent, dayVideos: Video[]) {
+    $event.stopPropagation();
+    if (dayVideos.length === 0) return;
+    this.dialog.open(DialogSeveralVideos, { data: dayVideos });
   }
 }

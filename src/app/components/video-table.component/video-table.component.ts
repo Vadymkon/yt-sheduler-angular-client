@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, ViewChild } from '@angular/core';
+import { Component, computed, ElementRef, inject, input, ViewChild } from '@angular/core';
 import {
   MatTableDataSource,
   MatTableModule,

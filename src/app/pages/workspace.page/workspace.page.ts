@@ -6,10 +6,18 @@ import { VideoTableComponent } from '../../components/video-table.component/vide
 import { FAKE_VIDEOS } from '../../../assets/fakedata';
 import { GlobalVarsService } from '../../services/global-vars.service';
 import { VideoCalendarComponent } from '../../components/video-calendar.component/video-calendar.component';
+import {
+  VideoTableScrollableComponent
+} from '../../components/video-table.component/video-table-scrollable.component/video-table-scrollable.component';
 
 @Component({
   selector: 'app-workspace',
-  imports: [FileGetterComponent, VideoTableComponent, VideoCalendarComponent],
+  imports: [
+    FileGetterComponent,
+    VideoTableComponent,
+    VideoCalendarComponent,
+    VideoTableScrollableComponent,
+  ],
   templateUrl: './workspace.page.html',
   styleUrl: './workspace.page.scss',
 })
