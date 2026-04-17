@@ -1,6 +1,7 @@
-styled-field {
+.styled-field {
   max-width: 1200px;
   display: block;
+  overflow: visible;
 }
 
 ::ng-deep .styled-field input.mat-mdc-input-element {
@@ -16,8 +17,15 @@ styled-field {
 
 ::ng-deep .styled-field .mat-mdc-text-field-wrapper {
   border-radius: 50px !important;
+  overflow: hidden; /* ключ */
+  position: relative;
+
   background-color: white !important;
-  padding: 0 16px !important;
+  border: 1px solid #dadce0 !important;
+
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,0.05),
+    0 4px 12px rgba(0,0,0,0.15);
 }
 
 ::ng-deep .styled-field .mat-mdc-form-field-notched-outline {
@@ -26,10 +34,6 @@ styled-field {
 
 ::ng-deep .styled-field .mat-mdc-form-field-notched-outline {
   display: none;
-}
-
-::ng-deep .styled-field .mat-mdc-text-field-wrapper {
-  border: 1px solid #dadce0 !important;
 }
 
 ::ng-deep .styled-field .mat-mdc-form-field-focus-indicator {
@@ -43,4 +47,20 @@ styled-field {
 ::ng-deep .styled-field .mat-mdc-text-field-wrapper .mdc-line-ripple::before,
 ::ng-deep .styled-field .mat-mdc-text-field-wrapper .mdc-line-ripple::after {
   display: none !important;
+}
+
+::ng-deep .styled-field .mat-mdc-text-field-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  opacity: 0;
+  transition: 0.2s;
+}
+
+::ng-deep .styled-field:hover .mat-mdc-text-field-wrapper::after {
+  opacity: 1;
 }

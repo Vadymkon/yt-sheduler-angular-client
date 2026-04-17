@@ -1,5 +1,14 @@
-table {
-  width: 100%;
+.example-container {
+  height: 85vh;
+  overflow: auto;
+}
+
+.select-column {
+  padding: unset;
+}
+.example-container table {
+  max-width: 70%;
+  background-color: transparent;
 }
 
 .mat-mdc-row .mat-mdc-cell {
@@ -10,4 +19,12 @@ table {
 
 .mat-mdc-row:hover .mat-mdc-cell {
   border-color: currentColor;
+}
+
+.table-restricter {
+  height: 80%;
+}
+
+.mat-column-select {
+  overflow: initial;
 }

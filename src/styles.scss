@@ -43,12 +43,15 @@ body {
 }
 
 .footer {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   padding: 16px;
 
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%);
+
+  width: 90%;
+  max-width: 800px;
 }
 
 .centered-element {
