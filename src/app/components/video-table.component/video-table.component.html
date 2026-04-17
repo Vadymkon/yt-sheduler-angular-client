@@ -1,0 +1,37 @@
+<table mat-table [dataSource]="videoDataSource" class="mat-elevation-z8 demo-table">
+<!-- Checkbox Selection Template -->
+  <ng-container matColumnDef="selection">
+    <th mat-header-cell *matHeaderCellDef> Checkbox </th>
+    <td mat-cell *matCellDef="let element">{{element}}</td>
+  </ng-container>
+<!-- Thumbnail Template -->
+  <ng-container matColumnDef="thumbnail">
+    <th mat-header-cell *matHeaderCellDef> Checkbox </th>
+    <td mat-cell *matCellDef="let element">{{element}}</td>
+  </ng-container>
+<!-- Title and details Template -->
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef> Checkbox </th>
+    <td mat-cell *matCellDef="let element">{{element}}</td>
+  </ng-container>
+<!-- Status Template -->
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef> Checkbox </th>
+    <td mat-cell *matCellDef="let element">{{element}}</td>
+  </ng-container>
+<!-- Publish Date Template -->
+  <ng-container matColumnDef="publishDate">
+    <th mat-header-cell *matHeaderCellDef> Checkbox </th>
+    <td mat-cell *matCellDef="let element">{{element}}</td>
+  </ng-container>
+<!-- Additional buttons Template -->
+  <ng-container matColumnDef="additionalButtons">
+    <th mat-header-cell *matHeaderCellDef> Checkbox </th>
+    <td mat-cell *matCellDef="let element">{{element}}</td>
+  </ng-container>
+
+<!-- Header appearance-->
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+<!-- Columns(element) appearance-->
+  <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+</table>
