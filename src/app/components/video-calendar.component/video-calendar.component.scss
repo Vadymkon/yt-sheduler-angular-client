@@ -1,0 +1,188 @@
+/* Import Material Icons */
+@import url('https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined');
+
+:host {
+  display: flex;
+  justify-content: center;
+  font-family: var(--inter-font);
+  width: 100%;
+  box-sizing: border-box;
+  padding: clamp(0.5rem, 2vw, 1rem); /* Responsive padding on the edges of the screen */
+}
+
+/* Main Calendar Container */
+.calendar {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--septenary-contrast);
+  border-radius: 0.5rem;
+  padding: clamp(0.5rem, 2vw, 1rem);
+  width: 100%;
+  max-width: 800px; /* IMPORTANT: Prevents the calendar from becoming oversized on desktop */
+  height: auto;
+  overflow: hidden; /* Hide scrollbar, let the calendar adjust its height automatically */
+}
+
+/* Calendar Header */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-block-end: 1rem;
+}
+
+.calendar-header h3 {
+  margin: 0;
+  font-size: clamp(1.2rem, 3vw, 1.5rem); /* Responsive title size */
+  text-transform: uppercase;
+}
+
+/* Navigation Buttons */
+button {
+  border: unset;
+  padding: unset;
+  color: unset;
+  background: unset;
+  outline: none;
+  border-radius: 50%;
+}
+
+button:hover,
+button:focus {
+  background-color: var(--senary-contrast);
+}
+
+button:focus {
+  outline-offset: -1px;
+  outline: 1px solid color-mix(in srgb, var(--bright-blue) 60%, transparent);
+}
+
+.visually-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.month-control {
+  width: clamp(35px, 8vw, 45px);
+  height: clamp(35px, 8vw, 45px);
+  cursor: pointer;
+}
+
+/* Grid (Table) Setup */
+[ngGrid] {
+  display: table;
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+  background-color: transparent;
+}
+
+th, [ngGridCell] {
+  border: 1px solid #ccc;
+  padding: 0;
+}
+
+/* Table Headers (Sun, Mon, Tue...) */
+thead th {
+  text-align: center;
+  vertical-align: middle;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: clamp(0.7rem, 2vw, 0.9rem);
+  height: clamp(30px, 5vw, 50px);
+}
+
+/* Interactive Button inside the Cell */
+button[ngGridCellWidget] {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1; /* Keep aspect ratio square, but cap the maximum size */
+  position: relative;
+  display: flex;
+  padding: 0;
+  border-radius: 0;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+}
+
+/* Day Number (Top Left Corner) */
+.day-number {
+  position: absolute;
+  top: clamp(4px, 1vw, 8px); /* Push closer to the corners on mobile devices */
+  left: clamp(4px, 1vw, 8px);
+  font-size: clamp(10px, 2.5vw, 16px); /* Font size scales down on mobile devices */
+  color: #333;
+}
+
+/* Disabled Cells */
+[ngGridCell][disabled],
+[ngGridCell][aria-disabled='true'] {
+  padding: clamp(4px, 1vw, 8px);
+  vertical-align: top;
+  text-align: left;
+  font-size: clamp(10px, 2.5vw, 16px);
+  color: var(--senary-contrast, #999);
+  background-color: #fafafa;
+}
+
+/* Video Indicator Container */
+.video-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+
+  &:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  /* CAMERA ICON */
+  .material-symbols-outlined.filled {
+    /* IMPORTANT: Icon scales from 28px (mobile) to 48px (desktop) */
+    font-size: clamp(28px, 6vw, 48px);
+    color: #334155;
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+    transition: color 0.2s ease;
+  }
+}
+
+/* NUMBER INSIDE THE CAMERA */
+.video-count {
+  position: absolute;
+  top: 52%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+
+  /* The internal number also scales proportionally */
+  font-size: clamp(10px, 2vw, 16px);
+  font-weight: bold;
+  color: #334155;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Selected Cell */
+[ngGridCell][aria-selected='true'] {
+  background-color: var(--indigo-blue);
+
+  .day-number {
+    color: #202838 !important;
+  }
+
+  .video-indicator .material-symbols-outlined.filled,
+  .video-indicator .video-count {
+    color: #202838 !important;
+  }
+}

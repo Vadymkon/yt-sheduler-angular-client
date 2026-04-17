@@ -1,6 +1,6 @@
 @if (FAKE_VIDEOS.length != 0) {
-  @if (mode() == 'calendar') {
-
+  @if (globalService.mode == 'calendar') {
+    <app-video-calendar [videos]="FAKE_VIDEOS"></app-video-calendar>
   }
   @else
   {
