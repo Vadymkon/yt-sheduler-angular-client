@@ -4,7 +4,7 @@
                'main-nav': true,
                'main-nav-phone': whatDeviceService.isPhone()
                }"
-               mode="side"
+               [mode]="whatDeviceService.isPhone() ? 'over' : 'side'"
                [opened] = "!whatDeviceService.isPhone()">
     <!-- ============================================================== -->
     <!-- Vertical Sidebar -->

@@ -1,0 +1,21 @@
+.my-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  vertical-align: middle;
+}
+
+.reset-button-size {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+:host {
+  position: absolute;
+  right: 0;
+  padding: 16px;
+}

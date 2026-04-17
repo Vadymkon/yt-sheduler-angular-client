@@ -1,5 +1,6 @@
 @if (whatDeviceService.isPhone()) {
-  <button matIconButton aria-label="Close/Open menu" (click)="toggleMenu.emit()">
+  <button matIconButton aria-label="Close/Open menu"
+          (click)="toggleMenu.emit()" style="padding: 16px">
     <mat-icon>menu</mat-icon>
   </button>
 }
