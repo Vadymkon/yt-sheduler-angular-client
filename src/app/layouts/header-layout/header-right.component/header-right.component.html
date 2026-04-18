@@ -1,6 +1,9 @@
-<button matIconButton class="reset-button-size">
+<button matIconButton class="reset-button-size" [matMenuTriggerFor]="menu">
 <img [ngSrc]="'https://material.angular.dev/assets/img/examples/shiba1.jpg'"
      class="my-avatar"
      alt="Shiba"
      width="40" height="40">
 </button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>{{ls.t.logout}}</button>
+</mat-menu>
