@@ -14,7 +14,6 @@ import {
   selector: 'app-workspace',
   imports: [
     FileGetterComponent,
-    VideoTableComponent,
     VideoCalendarComponent,
     VideoTableScrollableComponent,
   ],

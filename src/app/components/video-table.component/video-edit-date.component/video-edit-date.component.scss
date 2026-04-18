@@ -1,0 +1,32 @@
+.custom-table-picker {
+
+  .picker-group {
+    display: flex;
+    align-items: center;
+    border: 1px solid transparent; // Граница появляется только при фокусе, если нужно
+    padding: 2px 4px;
+    border-radius: 4px;
+    transition: background 0.2s;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.04); // Легкий подсвет при наведении
+    }
+  }
+
+  .clean-input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 13px;
+    color: #333;
+    width: 65px; // Фикс ширина для даты
+
+    &.time-input {
+      min-width: 65px; // Фикс ширина для времени
+    }
+  }
+}
+::ng-deep .mat-timepicker-panel {
+  min-width: 200px !important; /* Стандартная комфортная ширина для выбора времени */
+}
+

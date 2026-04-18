@@ -1,0 +1,13 @@
+<div class="custom-table-picker">
+  <div class="picker-group">
+    <input (click)="pickerDate.open()" [matDatepicker]="pickerDate" [value]="video().publishDate" class="clean-input date-input" (dateChange)="handleNewDate($event)">
+    <mat-datepicker-toggle [for]="pickerDate"></mat-datepicker-toggle>
+    <mat-datepicker #pickerDate></mat-datepicker>
+  </div>
+
+  <div class="picker-group">
+    <input [matTimepicker]="pickerTime" [value]="video().publishDate" class="clean-input time-input">
+    <mat-timepicker-toggle [for]="pickerTime"></mat-timepicker-toggle>
+    <mat-timepicker #pickerTime></mat-timepicker>
+  </div>
+</div>

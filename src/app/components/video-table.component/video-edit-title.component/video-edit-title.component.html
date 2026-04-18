@@ -1,0 +1,6 @@
+<mat-form-field class="plain-text-field" appearance="fill" >
+  <div matBadge="edit" matBadgeSize="large" class="custom-icon-badge" #matBadge>
+    <textarea matInput (click)="matBadge.style='visible:none'" (input)="saveAsDraft()" [value]="video().title" cdkTextareaAutosize></textarea>
+  </div>
+</mat-form-field>
+

@@ -5,4 +5,5 @@ export class Video {
   thumbnailURL!: string;
   publishStatus!: string;
   publishDate?: Date;
+  owner?: string;
 }

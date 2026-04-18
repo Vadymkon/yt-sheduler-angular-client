@@ -178,11 +178,11 @@ button[ngGridCellWidget] {
   background-color: var(--indigo-blue);
 
   .day-number {
-    color: #202838 !important;
+    color: var(--widget-curve) !important;
   }
 
   .video-indicator .material-symbols-outlined.filled,
   .video-indicator .video-count {
-    color: #202838 !important;
+    color: var(--widget-curve) !important;
   }
 }

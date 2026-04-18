@@ -30,3 +30,20 @@ table {
 .mat-column-select {
   overflow: initial;
 }
+
+/* Мягкий желтый для обновленных */
+.status-updated {
+  background-color: rgba(255, 235, 59, 0.15) !important;
+}
+
+/* Мягкий серый для черновиков */
+.status-draft {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  color: rgba(0, 0, 0, 0.6); /* Немного приглушаем текст */
+}
+
+/* Опционально: эффект при наведении, чтобы он был виден поверх цвета статуса */
+.mat-mdc-row.status-updated:hover,
+.mat-mdc-row.status-draft:hover {
+  background-color: rgba(0, 0, 0, 0.08) !important;
+}

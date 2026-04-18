@@ -1,0 +1,55 @@
+:host {
+  display: block;
+
+  .plain-text-field {
+    width: 100%;
+
+    // Убираем подчеркивание и фон
+    ::ng-deep {
+      .mat-mdc-form-field-subscript-wrapper {
+        display: none; // Убираем место под ошибки/подсказки (Padding снизу)
+      }
+
+      .mat-mdc-text-field-wrapper {
+        background-color: transparent !important; // Убираем серый фон
+        padding: 0 !important;
+      }
+
+      .mat-mdc-form-field-focus-indicator {
+        display: none; // Убираем линию при фокусе
+      }
+
+      .mdc-line-ripple {
+        display: none; // Убираем стандартную нижнюю линию
+      }
+
+      .mat-mdc-form-field-flex {
+        padding: 0 !important;
+        align-items: center;
+      }
+    }
+
+    input {
+      font: inherit; // Наследует шрифт родителя (размер, жирность)
+      color: inherit;
+      border: none;
+      outline: none;
+    }
+  }
+}
+
+::ng-deep .custom-icon-badge .mat-badge-content {
+  transform: translateX(-15px);
+  font-family: 'Material Icons' !important;
+  font-size: 16px;
+  background-color: var(--mat-sys-on-surface-variant);
+  ::ng-deep .custom-icon-badge .mat-badge-content:hover {
+    opacity: 0.5;
+    cursor: pointer; /* Чтобы было понятно, что на элемент можно нажать */
+  }
+}
+
+::ng-deep .plain-text-field .mat-mdc-form-field-subscript-wrapper {
+  display: block !important;
+  visibility: visible !important;
+}

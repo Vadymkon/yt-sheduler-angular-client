@@ -1,0 +1,10 @@
+::ng-deep .custom-icon-badge .mat-badge-content {
+  transform: translateX(-15px);
+  font-family: 'Material Icons' !important;
+  font-size: 16px;
+  background-color: var(--mat-sys-on-surface-variant);
+  ::ng-deep .custom-icon-badge .mat-badge-content:hover {
+    opacity: 0.5;
+    cursor: pointer; /* Чтобы было понятно, что на элемент можно нажать */
+  }
+}
