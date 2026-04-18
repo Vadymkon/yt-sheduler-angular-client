@@ -1,16 +1,16 @@
 <form [formGroup]="loginPage" (ngSubmit)="userIs === 'login' ? loginHandler() : signUpHandler()">
-  <h2>{{ userIs === 'login' ? 'Login' : 'Sign up' }}</h2>
+  <h2>{{ userIs === 'login' ? ls.t.login : ls.t.signUp }}</h2>
 
   <mat-form-field appearance="fill" subscriptSizing="dynamic">
-    <mat-label>Enter your email</mat-label>
-    <input matInput placeholder="pat@example.com" formControlName="email" />
+    <mat-label>{{ ls.t.enterEmail }}</mat-label>
+    <input matInput [placeholder]="ls.t.emailPlaceholder" formControlName="email" />
     @if (loginPage.get('email')?.invalid && loginPage.get('email')?.touched) {
       <mat-error>{{ errorMessage() }}</mat-error>
     }
   </mat-form-field>
 
   <mat-form-field appearance="fill" subscriptSizing="dynamic">
-    <mat-label>Enter your password</mat-label>
+    <mat-label>{{ ls.t.enterPassword }}</mat-label>
     <input matInput formControlName="password" [type]="hide() ? 'password' : 'text'" />
     <button type="button" mat-icon-button matSuffix (click)="hide.set(!hide())">
       <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
@@ -20,14 +20,14 @@
   <div class="hint-container">
     <small>
       @if (userIs === 'login') {
-        New? <a (click)="userIs = 'sign up'"> Click to sign up</a>
+        {{ ls.t.newQuestion }} <a (click)="userIs = 'sign up'"> {{ ls.t.clickToSignUp }}</a>
       } @else {
-        Have an account? <a (click)="userIs = 'login'"> Click to login</a>
+        {{ ls.t.haveAccount }} <a (click)="userIs = 'login'"> {{ ls.t.clickToLogin }}</a>
       }
     </small>
   </div>
 
   <button mat-flat-button color="primary" type="submit">
-    {{ userIs === 'login' ? 'Login' : 'Create Account' }}
+    {{ userIs === 'login' ? ls.t.login : ls.t.createAccount }}
   </button>
 </form>

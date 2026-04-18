@@ -10,6 +10,7 @@ import {
 import { MatIcon } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { AuthTemporaryService } from '../../services/auth-temporary.service';
+import { LangService } from '../../services/lang.service';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ import { AuthTemporaryService } from '../../services/auth-temporary.service';
   styleUrl: './login.page.scss',
 })
 export class LoginPage {
+  readonly ls = inject(LangService);
   private router = inject(Router);
   loginPage: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
