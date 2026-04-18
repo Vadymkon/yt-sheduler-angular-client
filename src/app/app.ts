@@ -6,10 +6,14 @@ import { WhatDeviceService } from './services/what-device.service';
 import { NavmenuLayout } from './layouts/navmenu.layout/navmenu.layout';
 import { FileDragndropLayout } from './layouts/file-dragndrop.layout/file-dragndrop.layout';
 import { HeaderLayout } from './layouts/header-layout/header-layout';
+import { LoginPage } from './pages/login.page/login.page';
 
 @Component({
   selector: 'app-root',
-  imports: [WorkspacePage, MatSidenavModule, NavmenuLayout, FileDragndropLayout, HeaderLayout],
+  imports: [
+    MatSidenavModule,
+    RouterOutlet,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

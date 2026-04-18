@@ -1,0 +1,33 @@
+<form [formGroup]="loginPage" (ngSubmit)="userIs === 'login' ? loginHandler() : signUpHandler()">
+  <h2>{{ userIs === 'login' ? 'Login' : 'Sign up' }}</h2>
+
+  <mat-form-field appearance="fill" subscriptSizing="dynamic">
+    <mat-label>Enter your email</mat-label>
+    <input matInput placeholder="pat@example.com" formControlName="email" />
+    @if (loginPage.get('email')?.invalid && loginPage.get('email')?.touched) {
+      <mat-error>{{ errorMessage() }}</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" subscriptSizing="dynamic">
+    <mat-label>Enter your password</mat-label>
+    <input matInput formControlName="password" [type]="hide() ? 'password' : 'text'" />
+    <button type="button" mat-icon-button matSuffix (click)="hide.set(!hide())">
+      <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <div class="hint-container">
+    <small>
+      @if (userIs === 'login') {
+        New? <a (click)="userIs = 'sign up'"> Click to sign up</a>
+      } @else {
+        Have an account? <a (click)="userIs = 'login'"> Click to login</a>
+      }
+    </small>
+  </div>
+
+  <button mat-flat-button color="primary" type="submit">
+    {{ userIs === 'login' ? 'Login' : 'Create Account' }}
+  </button>
+</form>
