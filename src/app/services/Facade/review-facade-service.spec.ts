@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GlobalVarsService } from './global-vars.service';
+import { ReviewFacadeService } from './review-facade-service';
 
-describe('GlobalVarsService', () => {
-  let service: GlobalVarsService;
+describe('ReviewFacadeService', () => {
+  let service: ReviewFacadeService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(GlobalVarsService);
+    service = TestBed.inject(ReviewFacadeService);
   });
 
   it('should be created', () => {

@@ -3,8 +3,4 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthTemporaryService {
-  isAuthenticated() {
-    return true;
-  }
-}
+export class AuthDomainService {}

@@ -1,6 +1,6 @@
 <mat-form-field subscriptSizing="dynamic" class="styled-field" style="width: 100%;">
   <button matIconButton matPrefix (click)="fileInput.click()"><mat-icon>link</mat-icon></button>
-  <input matInput placeholder="{{ls.t.pasteGDriveLink}}" [value]="this.fileTempService.files" ]>
+  <input matInput placeholder="{{ls.t.pasteGDriveLink}}" [value]="this.workspaceService.files" ]>
   <button matSuffix matButton="filled">{{ls.t.upload}}</button>
   <mat-hint>{{ls.t.getFileHint}}</mat-hint>
 </mat-form-field>

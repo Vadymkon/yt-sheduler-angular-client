@@ -9,7 +9,6 @@ import {
 } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
 import { Router } from '@angular/router';
-import { AuthTemporaryService } from '../../services/auth-temporary.service';
 import { LangService } from '../../services/lang.service';
 
 @Component({

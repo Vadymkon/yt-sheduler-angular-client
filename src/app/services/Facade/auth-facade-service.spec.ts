@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ScheduleFacade } from './schedule-facade';
+import { AuthFacadeService } from './auth-facade-service';
 
-describe('ScheduleFacade', () => {
-  let service: ScheduleFacade;
+describe('AuthFacadeService', () => {
+  let service: AuthFacadeService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ScheduleFacade);
+    service = TestBed.inject(AuthFacadeService);
   });
 
   it('should be created', () => {

@@ -4,11 +4,11 @@ import { FileGetterComponent } from '../../components/file-getter.component/file
 import { WhatDeviceService } from '../../services/what-device.service';
 import { VideoTableComponent } from '../../components/video-table.component/video-table.component';
 import { FAKE_VIDEOS } from '../../../assets/fakedata';
-import { GlobalVarsService } from '../../services/global-vars.service';
 import { VideoCalendarComponent } from '../../components/video-calendar.component/video-calendar.component';
 import {
   VideoTableScrollableComponent
 } from '../../components/video-table.component/video-table-scrollable.component/video-table-scrollable.component';
+import { WorkspaceFacadeService } from '../../services/Facade/workspace-facade-service';
 
 @Component({
   selector: 'app-workspace',
@@ -22,6 +22,6 @@ import {
 })
 export class WorkspacePage {
   protected readonly whatDeviceService = inject(WhatDeviceService);
-  protected readonly globalService = inject(GlobalVarsService);
+  protected readonly workspaceService = inject(WorkspaceFacadeService);
   protected readonly FAKE_VIDEOS = FAKE_VIDEOS;
 }

@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@
 import { MatDialogContent, MatDialogRef } from '@angular/material/dialog';
 import { WhatDeviceService } from '../../services/what-device.service';
 import { MatIcon } from '@angular/material/icon';
-import { FilesTemporaryService } from '../../services/files-temporary-service';
 import { LangService } from '../../services/lang.service';
+import { WorkspaceFacadeService } from '../../services/Facade/workspace-facade-service';
 
 @Component({
   selector: 'app-file-dragndrop',
@@ -13,7 +13,7 @@ import { LangService } from '../../services/lang.service';
 })
 export class FileDragndropLayout {
   readonly whatDeviceService = inject(WhatDeviceService);
-  readonly fileTempService = inject(FilesTemporaryService);
+  readonly workspaceService = inject(WorkspaceFacadeService);
   readonly ls = inject(LangService);
   isFileDraggedOver: boolean = false;
 
@@ -29,7 +29,7 @@ export class FileDragndropLayout {
         file.type.startsWith('video/') ||
         ['.mp4', '.mov', '.avi', '.mkv'].some(ext => file.name.toLowerCase().endsWith(ext))
       );
-      this.fileTempService.files = onlyVideos.map(video => video.name).join(', ');
+      this.workspaceService.files = onlyVideos.map(video => video.name).join(', ');
       console.log('Files dropped:', onlyVideos);
     }
   }

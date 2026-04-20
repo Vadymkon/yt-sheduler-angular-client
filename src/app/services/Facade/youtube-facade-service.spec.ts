@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AuthFacade } from './auth-facade';
+import { YoutubeFacadeService } from './youtube-facade-service';
 
-describe('AuthFacade', () => {
-  let service: AuthFacade;
+describe('YoutubeFacadeService', () => {
+  let service: YoutubeFacadeService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(AuthFacade);
+    service = TestBed.inject(YoutubeFacadeService);
   });
 
   it('should be created', () => {

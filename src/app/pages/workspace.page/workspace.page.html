@@ -1,5 +1,5 @@
 @if (FAKE_VIDEOS.length != 0) {
-  @if (globalService.mode == 'calendar') {
+  @if (workspaceService.mode == 'calendar') {
     <app-video-calendar [videos]="FAKE_VIDEOS"></app-video-calendar>
   }
   @else
