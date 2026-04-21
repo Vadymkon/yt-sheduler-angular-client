@@ -1,5 +1,9 @@
 import { Channel } from '../app/models/channel.model';
 import { Video } from '../app/models/video.model';
+import { User } from '../app/models/user.model';
+import { AuthResponse } from '../app/services/API/auth-api-service';
+
+
 
 export const fakeChannels: Channel[] = [
   {
@@ -58,3 +62,13 @@ export const FAKE_VIDEOS: Video[] = [
   { id: '19', title: 'CI/CD для фронтенда', description: 'Автоматизація деплою.', thumbnailURL: 'https://picsum.photos/id/19/200/120', publishStatus: 'published', publishDate: new Date('2026-04-16'), owner: 'Vadym' },
   { id: '20', title: 'Огляд Angular DevTools', description: 'Як дебажити код ефективно.', thumbnailURL: 'https://picsum.photos/id/20/200/120', publishStatus: 'published', publishDate: new Date('2026-04-16'), owner: 'Vadym' }
 ];
+
+export const MOCK_AUTH_RESPONSE: AuthResponse = {
+  jwtToken: 'fake-jwt-token-eyJhbGciOiJIUzI1NiIsInR5c',
+  user: {
+    id: 'usr_123',
+    password: 'Vadym',
+    email: 'admin@ytmanager.com',
+     createdAt: ''
+  } as User
+};

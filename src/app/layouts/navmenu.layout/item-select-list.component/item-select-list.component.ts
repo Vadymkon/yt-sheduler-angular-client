@@ -6,6 +6,8 @@ import { Channel } from '../../../models/channel.model';
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { LangService } from '../../../services/lang.service';
+import { AuthFacadeService } from '../../../services/Facade/auth-facade-service';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-item-select-list',
@@ -14,8 +16,9 @@ import { LangService } from '../../../services/lang.service';
   styleUrl: './item-select-list.component.scss',
 })
 export class ItemSelectListComponent {
-  protected readonly fakeChannels = fakeChannels;
-  ls = inject(LangService);
+  protected readonly authService = inject(AuthFacadeService);
+  protected readonly ls = inject(LangService);
+  protected readonly channels = toSignal(this.authService.getLinkedChannels(), { initialValue: [] });
 
   chooseChannel(channel: Channel, $event: boolean) {}
 }

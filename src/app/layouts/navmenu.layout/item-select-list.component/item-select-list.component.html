@@ -1,7 +1,7 @@
 <!-- LIST OF CHANNELS -->
 <h2 class="section-title">{{ ls.t.channels }}</h2>
 <ul class="custom-channel-list">
-  @for (channel of fakeChannels; track $index) {
+  @for (channel of channels(); track $index) {
     <li>
       <app-channel-item [channel]="channel" (toggleEvent)="chooseChannel(channel, $event)"/>
     </li>

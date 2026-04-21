@@ -23,7 +23,7 @@ export class AppConfigService {
     });
   }
 
-  get settings(): AppConfig {
+  get get(): AppConfig {
     if (!this.config) {
       throw Error('Config not loaded!');
     }

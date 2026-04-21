@@ -5,6 +5,7 @@ import { MatButton, MatButtonModule, MatIconButton } from '@angular/material/but
 import { MatMenuModule } from '@angular/material/menu';
 import { LangService } from '../../../services/lang.service';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { AuthFacadeService } from '../../../services/Facade/auth-facade-service';
 
 @Component({
   selector: 'app-header-right',
@@ -15,8 +16,10 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 export class HeaderRightComponent {
   readonly ls = inject(LangService);
   private router = inject(Router);
+  private readonly authService = inject(AuthFacadeService);
 
   logout() {
+    this.authService.logout();
     this.router.navigate(['/login']);
   }
 }

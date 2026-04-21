@@ -10,19 +10,31 @@ import {
 import { MatIcon } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { LangService } from '../../services/lang.service';
+import { AuthFacadeService } from '../../services/Facade/auth-facade-service';
+import { LoginCredentials } from '../../services/API/auth-api-service';
 
 @Component({
   selector: 'app-login',
-  imports: [MatFormField, MatInput, MatLabel, MatButton, ReactiveFormsModule, MatError, MatIcon, MatIconButton],
+  imports: [
+    MatFormField,
+    MatInput,
+    MatLabel,
+    MatButton,
+    ReactiveFormsModule,
+    MatError,
+    MatIcon,
+    MatIconButton,
+  ],
   templateUrl: './login.page.html',
   styleUrl: './login.page.scss',
 })
 export class LoginPage {
   readonly ls = inject(LangService);
   private router = inject(Router);
+  private readonly authService = inject(AuthFacadeService);
   loginPage: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6)])
+    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
   });
   userIs: string = 'login';
   hide = signal(true);
@@ -34,12 +46,23 @@ export class LoginPage {
     return 'Invalid field';
   });
 
-  loginHandler() {
-    console.log("Logined: ",this.loginPage.value.email, this.loginPage.value.password);
+  async loginHandler() {
+    const credentials = {
+      email: this.loginPage.value.email!,
+      password: this.loginPage.value.password!,
+    };
+    await this.authService.loginWithPassword(credentials);
+    // console.log('Logined: ', this.loginPage.value.email, this.loginPage.value.password);
     this.router.navigate(['/']);
   }
-  signUpHandler() {
-    console.log("Signed up: ",this.loginPage.value.email, this.loginPage.value.password);
+
+  async signUpHandler() {
+    const credentials = {
+      email: this.loginPage.value.email!,
+      password: this.loginPage.value.password!,
+    };
+    await this.authService.signUpWithPassword(credentials);
+    // console.log('Signed up: ', this.loginPage.value.email, this.loginPage.value.password);
     this.router.navigate(['/']);
   }
 }

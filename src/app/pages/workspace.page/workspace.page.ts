@@ -24,4 +24,8 @@ export class WorkspacePage {
   protected readonly whatDeviceService = inject(WhatDeviceService);
   protected readonly workspaceService = inject(WorkspaceFacadeService);
   protected readonly FAKE_VIDEOS = FAKE_VIDEOS;
+
+  constructor() {
+    this.workspaceService.restoreSession();
+  }
 }

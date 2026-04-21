@@ -1,3 +1,10 @@
 {
-  "appName": "AI Uploader"
+  "appName": "AI Uploader",
+  "API_SEND_FEEDBACK": "/api/send_feedback",
+  "API_LOGIN_GOOGLE": "/api/login/GOOGLE",
+  "API_LOGIN_EMAIL": "/api/login/EMAIL",
+  "API_SIGNUP_EMAIL": "/api/signup/EMAIL",
+  "API_GET_LINKED_CHANNELS": "/api/GET_LINKED_CHANNELS",
+  "API_LOGIN": "/api/login"
 }
+

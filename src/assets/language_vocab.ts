@@ -40,6 +40,9 @@ export default {
     haveAccount: "Have an account?",
     clickToLogin: "Click to login",
     createAccount: "Create Account",
+    feedbackIsSentSuccessfully: "Feedback is sent successfully!",
+    errorSendingFeedback: "Error sending feedback.",
+    loginFailed: "Login failed",
   },
   "ua": {
     languageName: "Українська",
@@ -82,6 +85,9 @@ export default {
     haveAccount: "Вже є акаунт?",
     clickToLogin: "Увійти",
     createAccount: "Створити акаунт",
+    feedbackIsSentSuccessfully: "Feedback is sent successfully!",
+    errorSendingFeedback: "Error sending feedback.",
+    loginFailed: "Login failed",
   },
   "ja": {
     languageName: "日本語",
@@ -124,5 +130,8 @@ export default {
     haveAccount: "アカウントをお持ちですか？",
     clickToLogin: "ログインする",
     createAccount: "アカウントを作成",
+    feedbackIsSentSuccessfully: "Feedback is sent successfully!",
+    errorSendingFeedback: "Error sending feedback.",
+    loginFailed: "Login failed",
   },
 }
