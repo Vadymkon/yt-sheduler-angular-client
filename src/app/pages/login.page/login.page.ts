@@ -46,6 +46,12 @@ export class LoginPage {
     return 'Invalid field';
   });
 
+  async ngOnInit(): Promise<void> {
+    // try to login through auth
+    await this.authService.loginWithGoogleCode();
+    this.router.navigate(['/']);
+  }
+
   async loginHandler() {
     const credentials = {
       email: this.loginPage.value.email!,
@@ -64,5 +70,9 @@ export class LoginPage {
     await this.authService.signUpWithPassword(credentials);
     // console.log('Signed up: ', this.loginPage.value.email, this.loginPage.value.password);
     this.router.navigate(['/']);
+  }
+
+  redirectToGoogleAuth() {
+    this.authService.redirectToGoogleAuth();
   }
 }

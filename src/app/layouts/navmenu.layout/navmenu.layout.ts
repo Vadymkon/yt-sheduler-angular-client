@@ -13,6 +13,7 @@ import { ItemSelectListComponent } from './item-select-list.component/item-selec
 import { NavHeaderComponent } from './nav-header.component/nav-header.component';
 import { BottomActionsNavbarComponent } from './bottom-actions-navbar.component/bottom-actions-navbar.component';
 import { NavLogoComponent } from './nav-logo.component/nav-logo.component';
+import { WorkspaceFacadeService } from '../../services/Facade/workspace-facade-service';
 @Component({
   selector: 'app-navmenu-layout',
   imports: [
@@ -32,5 +33,6 @@ import { NavLogoComponent } from './nav-logo.component/nav-logo.component';
 })
 export class NavmenuLayout {
   whatDeviceService = inject(WhatDeviceService);
-  protected readonly fakeChannels = fakeChannels;
+  protected readonly workspaceService = inject(WorkspaceFacadeService);
+  protected readonly channels = this.workspaceService.channels;
 }

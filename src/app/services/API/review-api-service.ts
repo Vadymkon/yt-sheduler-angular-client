@@ -10,8 +10,7 @@ export class ReviewApiService {
   http = inject(HttpClient);
   config = inject(AppConfigService);
 
-  sendFeedback(feedback: string)
-  {
+  sendFeedback(feedback: string) {
     return this.http.post(this.config.get.API_SEND_FEEDBACK, { feedback });
   }
 }

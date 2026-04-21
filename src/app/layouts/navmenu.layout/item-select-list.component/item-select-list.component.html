@@ -9,7 +9,7 @@
   }
   <!-- ADD NEW CHANNEL BUTTON-->
   <div class="add-button-container">
-    <button matButton="tonal" class="add-button">
+    <button matButton="tonal" class="add-button" (click)="youtubeService.addChannelViaGoogleAuth()">
       {{ls.t.addChannel}} <mat-icon>add</mat-icon>
     </button>
   </div>

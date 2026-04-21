@@ -12,6 +12,8 @@ export class ReviewFacadeService {
   private readonly toast = inject(ToastService);
   private readonly ls = inject(LangService);
 
+  // DEBUG: set toast to all services
+  // DEBUG: set ls to all services
   async sendFeedback(feedback: string):Promise<boolean> {
     try {
       await firstValueFrom(this.review_api.sendFeedback(feedback)); // api function

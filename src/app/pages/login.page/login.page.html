@@ -30,4 +30,8 @@
   <button mat-flat-button color="primary" type="submit">
     {{ userIs === 'login' ? ls.t.login : ls.t.createAccount }}
   </button>
+
+  <button mat-flat-button color="primary" (click)="redirectToGoogleAuth()">
+    GOOGLE {{ userIs === 'login' ? ls.t.login : ls.t.createAccount }}
+  </button>
 </form>

@@ -13,9 +13,38 @@ export class AuthApiService {
   http = inject(HttpClient);
   config = inject(AppConfigService);
 
-  loginWithGoogle(googleToken: string): Observable<AuthResponse> {
+  redirectToGoogleAuth() {
+    const url =
+      'https://accounts.google.com/o/oauth2/v2/auth' +
+      `?client_id=${this.config.get.CLIENT_ID}` +
+      `&redirect_uri=${encodeURIComponent(this.config.get.REDIRECT_URI_LOGIN)}` +
+      `&response_type=token` +
+      `&scope=${encodeURIComponent(this.config.get.SCOPE_UPLOAD)}`;
+
+    window.location.href = url;
+  }
+
+  addChannelViaGoogleAuth() {
+    const url =
+      'https://accounts.google.com/o/oauth2/v2/auth' +
+      `?client_id=${this.config.get.CLIENT_ID}` +
+      `&redirect_uri=${encodeURIComponent(this.config.get.REDIRECT_URI)}` +
+      `&response_type=token` +
+      `&scope=${encodeURIComponent(this.config.get.SCOPE_UPLOAD)}`;
+
+      // 'https://accounts.google.com/o/oauth2/v2/auth' +
+      // `?client_id=${this.config.get.CLIENT_ID}` +
+      // `&redirect_uri=${encodeURIComponent(this.config.get.REDIRECT_URI_LOGIN)}` +
+      // `&response_type=code` + // ask for a code instead of token
+      // `&access_type=offline` + // Need refresh_token for backend
+      // `&prompt=consent` + // Asks for a permission
+      // `&scope=${encodeURIComponent(this.config.get.SCOPE_UPLOAD)}`;
+    window.location.href = url;
+  }
+
+  loginWithGoogle(code: string): Observable<AuthResponse> {
     return of(MOCK_AUTH_RESPONSE).pipe(delay(600));
-    return this.http.post<AuthResponse>(this.config.get.API_LOGIN_GOOGLE, { token: googleToken });
+    return this.http.post<AuthResponse>(this.config.get.API_LOGIN_GOOGLE, { code });
   }
 
   loginWithPassword(credentials: LoginCredentials): Observable<AuthResponse> {
@@ -32,7 +61,6 @@ export class AuthApiService {
     return of(fakeChannels).pipe(delay(600));
     return this.http.get<Channel[]>(this.config.get.API_GET_LINKED_CHANNELS);
   }
-
 }
 
 

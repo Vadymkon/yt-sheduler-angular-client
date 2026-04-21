@@ -4,6 +4,7 @@ import { AuthStateDomainService } from '../Domain/auth-state-domain-service';
 import { CacheService } from '../cache-service';
 import { firstValueFrom } from 'rxjs';
 import { User } from '../../models/user.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,10 @@ export class AuthFacadeService {
     this.authState.updateAuth(user, token);
     this.cache.set('token', token);
     this.cache.set('user_info', user);
+  }
+
+  redirectToGoogleAuth() {
+    this.authApi.redirectToGoogleAuth();
   }
 
   restoreSession() {
@@ -36,6 +41,25 @@ export class AuthFacadeService {
 
       return true;
     } catch (error) {
+      console.error('Помилка авторизації:', error);
+
+      return false;
+    }
+  }
+
+  async loginWithGoogleCode() {
+    try {
+      // parse access_token from URL hash
+      const hash = new URLSearchParams(window.location.hash.substring(1));
+      const accessToken = hash.get('access_token');
+
+      if (accessToken) {
+        const response = await firstValueFrom(this.authApi.loginWithGoogle(accessToken));
+        this.saveSession(response.user, response.jwtToken);
+      }
+      return true;
+    }
+    catch (error) {
       console.error('Помилка авторизації:', error);
 
       return false;

@@ -43,6 +43,8 @@ export default {
     feedbackIsSentSuccessfully: "Feedback is sent successfully!",
     errorSendingFeedback: "Error sending feedback.",
     loginFailed: "Login failed",
+    scheduleIsMaden: "Schedule is maden",
+    errorMakingSchedule: "Error Making Schedule",
   },
   "ua": {
     languageName: "Українська",
@@ -88,6 +90,8 @@ export default {
     feedbackIsSentSuccessfully: "Feedback is sent successfully!",
     errorSendingFeedback: "Error sending feedback.",
     loginFailed: "Login failed",
+    scheduleIsMaden: "Schedule is maden",
+    errorMakingSchedule: "Error Making Schedule",
   },
   "ja": {
     languageName: "日本語",
@@ -133,5 +137,7 @@ export default {
     feedbackIsSentSuccessfully: "Feedback is sent successfully!",
     errorSendingFeedback: "Error sending feedback.",
     loginFailed: "Login failed",
+    scheduleIsMaden: "Schedule is maden",
+    errorMakingSchedule: "Error Making Schedule",
   },
 }
