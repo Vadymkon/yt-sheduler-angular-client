@@ -45,6 +45,7 @@ export default {
     loginFailed: "Login failed",
     scheduleIsMaden: "Schedule is maden",
     errorMakingSchedule: "Error Making Schedule",
+    videosUpdated: "Videos are updated successfully!",
   },
   "ua": {
     languageName: "Українська",
@@ -92,6 +93,7 @@ export default {
     loginFailed: "Login failed",
     scheduleIsMaden: "Schedule is maden",
     errorMakingSchedule: "Error Making Schedule",
+    videosUpdated: "Videos are updated successfully!",
   },
   "ja": {
     languageName: "日本語",
@@ -139,5 +141,6 @@ export default {
     loginFailed: "Login failed",
     scheduleIsMaden: "Schedule is maden",
     errorMakingSchedule: "Error Making Schedule",
+    videosUpdated: "Videos are updated successfully!",
   },
 }

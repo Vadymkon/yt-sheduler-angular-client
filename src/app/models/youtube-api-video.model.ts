@@ -6,6 +6,7 @@ export interface VideoSnippet {
 
 export interface VideoStatus {
   privacyStatus: 'private' | 'public' | 'unlisted'; // Използване на Union тип за по-голяма точност
+  publishAt?: string;
 }
 
 export interface VideoUploadPayload {

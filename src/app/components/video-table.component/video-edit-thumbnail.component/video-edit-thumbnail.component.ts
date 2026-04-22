@@ -14,7 +14,12 @@ export class VideoEditThumbnailComponent {
   video = input.required<Video>();
 
   handleFiles($event: Event) {
-    this.video().publishStatus = "updated";
-    console.log('file handled: ', $event);
+    const input = $event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+      this.video().publishStatus = "updated";
+      this.video().thumbnailURL = URL.createObjectURL(file);
+      console.log('file handled: ', this.video());
+    }
   }
 }

@@ -28,8 +28,7 @@ export class AuthApiService {
   // for adding new channel
   redirectToGoogleAuthChannel() {
     const scopes = [
-      this.config.get.SCOPE_UPLOAD,
-      this.config.get.SCOPE_READONLY
+      this.config.get.SCOPE_MANAGE
     ].join(' ');
 
     const url =

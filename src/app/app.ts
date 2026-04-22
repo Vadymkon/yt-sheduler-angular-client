@@ -34,7 +34,8 @@ export class App {
   async ngOnInit() {
     this.workspaceService.channels.set(await firstValueFrom(this.authService.getLinkedChannels()));
     this.workspaceService.videos.set
-    (await firstValueFrom(this.youtubeService.getVideos
-    (this.workspaceService.channels().filter(channel => channel.selected))));
+    // update videos
+    await firstValueFrom(this.youtubeService.getVideos
+    (this.workspaceService.channels().filter(channel => channel.selected)));
   }
 }

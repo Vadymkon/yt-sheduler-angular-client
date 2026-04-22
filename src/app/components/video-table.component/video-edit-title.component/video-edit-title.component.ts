@@ -1,4 +1,12 @@
-import { Component, effect, input, signal } from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  effect,
+  ElementRef,
+  input,
+  signal,
+  ViewChild,
+} from '@angular/core';
 import { Video } from '../../../models/video.model';
 import { MatFormField, MatHint, MatInput, MatPrefix, MatSuffix } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
@@ -12,9 +20,11 @@ import { CdkTextareaAutosize } from '@angular/cdk/text-field';
   styleUrl: './video-edit-title.component.scss',
 })
 export class VideoEditTitleComponent {
+  @ViewChild('textareaField') textAreaRef!: ElementRef<HTMLTextAreaElement>;
   video = input.required<Video>();
 
-  saveAsDraft() {
+  saveAsDraft($event: Event) {
     this.video().publishStatus = 'updated';
+    this.video().title = this.textAreaRef.nativeElement.value;
   }
 }

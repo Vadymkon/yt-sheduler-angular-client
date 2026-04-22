@@ -15,10 +15,12 @@
   "REDIRECT_URI_LOGIN": "http://localhost:4200/login",
   "SCOPE_UPLOAD": "https://www.googleapis.com/auth/youtube.upload",
   "SCOPE_READONLY": "https://www.googleapis.com/auth/youtube.readonly",
+  "SCOPE_MANAGE": "https://www.googleapis.com/auth/youtube",
   "YOUTUBE_API_UPLOAD_VIDEO": "https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status",
   "YOUTUBE_API_UPDATE_VIDEO": "https://www.googleapis.com/youtube/v3/videos?part=snippet,status",
   "YOUTUBE_API_GET_VIDEOS_INFO": "https://www.googleapis.com/youtube/v3/videos?part=snippet,status&id=",
   "YOUTUBE_API_SET_THUMBNAIL": "https://www.googleapis.com/upload/youtube/v3/thumbnails/set",
   "YOUTUBE_API_GET_CHANNEL_DATA": "https://www.googleapis.com/youtube/v3/channels?part=snippet&mine=true",
+  "YOUTUBE_API_PLAYLIST_ITEMS": "https://www.googleapis.com/youtube/v3/playlistItems",
   "YOUTUBE_API_SEARCH": "https://www.googleapis.com/youtube/v3/search"
 }

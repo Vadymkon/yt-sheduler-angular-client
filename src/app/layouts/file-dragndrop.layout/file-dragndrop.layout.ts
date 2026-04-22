@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  computed,
+  inject,
+} from '@angular/core';
 import { MatDialogContent, MatDialogRef } from '@angular/material/dialog';
 import { WhatDeviceService } from '../../services/what-device.service';
 import { MatIcon } from '@angular/material/icon';
@@ -29,7 +35,8 @@ export class FileDragndropLayout {
         file.type.startsWith('video/') ||
         ['.mp4', '.mov', '.avi', '.mkv'].some(ext => file.name.toLowerCase().endsWith(ext))
       );
-      this.workspaceService.files = onlyVideos.map(video => video.name).join(', ');
+      this.workspaceService.files = onlyVideos;
+      this.workspaceService.fileLabels = onlyVideos.map((x) => x.name).join(', ');
       console.log('Files dropped:', onlyVideos);
     }
   }

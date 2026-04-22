@@ -54,7 +54,7 @@ export class YoutubeApiService {
   // ---------------------------------------------------------
   // UPDATE VIDEO (Metadata: Title, Description, Status)
   // ---------------------------------------------------------
-  async updateVideo(videoId: string, token: string, payload: VideoUploadPayload): Promise<any> {
+  updateVideo(videoId: string, token: string, payload: VideoUploadPayload): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
@@ -65,11 +65,7 @@ export class YoutubeApiService {
       ...payload
     };
 
-    const updateResult = await firstValueFrom(
-      this.http.put<any>(this.config.get.YOUTUBE_API_UPDATE_VIDEO, updateBody, { headers })
-    );
-
-    return updateResult; // Returns the updated video object
+      return this.http.put<any>(this.config.get.YOUTUBE_API_UPDATE_VIDEO, updateBody, { headers })
   }
 
   // ---------------------------------------------------------
@@ -98,19 +94,14 @@ export class YoutubeApiService {
   // ---------------------------------------------------------
   // UPLOAD CUSTOM THUMBNAIL
   // ---------------------------------------------------------
-  async updateThumbnail(videoId: string, file: File, token: string): Promise<any> {
+   updateThumbnail(videoId: string, file: File, token: string) {
     const url = `${this.config.get.YOUTUBE_API_SET_THUMBNAIL}?videoId=${videoId}`;
-
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Content-Type': file.type
     });
 
-    const response = await firstValueFrom(
-      this.http.post<any>(url, file, { headers })
-    );
-
-    return response;
+    return this.http.post<any>(url, file, { headers });
   }
 
   // ---------------------------------------------------------
@@ -130,14 +121,15 @@ export class YoutubeApiService {
   getVideosByChannelId(
     channelId: string | undefined,
     token: string | undefined,
-    maxResults: number = 50): Observable<any> {
+    maxResults: number = 50
+  ): Observable<any> {
+
     if (!channelId || !token) {
       return of(null);
     }
-    // part=snippet - basic data (title, thumbnail, date)
-    // type=video - exclude channels and playlists
-    // order=date - sorting
-    const url = `${this.config.get.YOUTUBE_API_SEARCH}?part=snippet&channelId=${channelId}&type=video&order=date&maxResults=${maxResults}`;
+
+    const uploadsPlaylistId = channelId.replace(/^UC/, 'UU');
+    const url = `${this.config.get.YOUTUBE_API_PLAYLIST_ITEMS}?part=snippet&playlistId=${uploadsPlaylistId}&maxResults=${maxResults}`;
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,

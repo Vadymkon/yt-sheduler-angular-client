@@ -38,5 +38,6 @@ export class VideoEditDateComponent {
 
   handleNewDate($event: MatDatepickerInputEvent<any, any>) {
     this.video().publishStatus = "updated";
+    this.video().publishDate = $event.value;
   }
 }
