@@ -19,7 +19,6 @@ import { YoutubeFacadeService } from '../../../services/Facade/youtube-facade-se
   styleUrl: './item-select-list.component.scss',
 })
 export class ItemSelectListComponent {
-  protected readonly authService = inject(AuthFacadeService);
   protected readonly ls = inject(LangService);
   protected readonly workspaceService = inject(WorkspaceFacadeService);
   protected readonly channels = this.workspaceService.channels;

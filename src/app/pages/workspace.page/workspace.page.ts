@@ -9,6 +9,8 @@ import {
   VideoTableScrollableComponent
 } from '../../components/video-table.component/video-table-scrollable.component/video-table-scrollable.component';
 import { WorkspaceFacadeService } from '../../services/Facade/workspace-facade-service';
+import { AuthFacadeService } from '../../services/Facade/auth-facade-service';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-workspace',
@@ -23,9 +25,7 @@ import { WorkspaceFacadeService } from '../../services/Facade/workspace-facade-s
 export class WorkspacePage {
   protected readonly whatDeviceService = inject(WhatDeviceService);
   protected readonly workspaceService = inject(WorkspaceFacadeService);
-  protected readonly FAKE_VIDEOS = FAKE_VIDEOS;
+  protected readonly authService = inject(AuthFacadeService);
 
-  constructor() {
-    this.workspaceService.restoreSession();
-  }
+  protected readonly FAKE_VIDEOS = FAKE_VIDEOS;
 }

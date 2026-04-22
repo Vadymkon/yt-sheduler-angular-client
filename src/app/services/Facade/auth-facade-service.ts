@@ -5,6 +5,8 @@ import { CacheService } from '../cache-service';
 import { firstValueFrom } from 'rxjs';
 import { User } from '../../models/user.model';
 import { Router } from '@angular/router';
+import { WorkspaceFacadeService } from './workspace-facade-service';
+import { Channel } from '../../models/channel.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +14,7 @@ import { Router } from '@angular/router';
 export class AuthFacadeService {
   private authApi = inject(AuthApiService);
   private authState = inject(AuthStateDomainService);
+  private workspaceService = inject(WorkspaceFacadeService);
   private cache = inject(CacheService);
   readonly isAuthenticated = this.authState.isAuthenticated;
 
@@ -45,6 +48,34 @@ export class AuthFacadeService {
 
       return false;
     }
+  }
+
+  makeChannel():Channel {
+    return new Channel()
+  }
+
+  async saveLinkedChannel() {
+    try {
+      // parse access_token from URL hash
+      const hash = new URLSearchParams(window.location.hash.substring(1));
+      const accessToken = hash.get('access_token');
+
+      if (accessToken) {
+        // const channel = this.makeChannel();
+        // const response = await firstValueFrom(this.authApi.saveLinkedChannel(channel)); // API
+        // this.workspaceService.channels.apply(channel); // Component State
+      }
+      return true;
+    }
+    catch (error) {
+      console.error('Помилка авторизації:', error);
+
+      return false;
+    }
+  }
+
+  async saveGoogleChannel() {
+
   }
 
   async loginWithGoogleCode() {

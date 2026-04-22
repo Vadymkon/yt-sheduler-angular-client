@@ -13,6 +13,7 @@ export class AuthApiService {
   http = inject(HttpClient);
   config = inject(AppConfigService);
 
+  // for login
   redirectToGoogleAuth() {
     const url =
       'https://accounts.google.com/o/oauth2/v2/auth' +
@@ -24,13 +25,19 @@ export class AuthApiService {
     window.location.href = url;
   }
 
-  addChannelViaGoogleAuth() {
+  // for adding new channel
+  redirectToGoogleAuthChannel() {
+    const scopes = [
+      this.config.get.SCOPE_UPLOAD,
+      this.config.get.SCOPE_READONLY
+    ].join(' ');
+
     const url =
       'https://accounts.google.com/o/oauth2/v2/auth' +
       `?client_id=${this.config.get.CLIENT_ID}` +
       `&redirect_uri=${encodeURIComponent(this.config.get.REDIRECT_URI)}` +
       `&response_type=token` +
-      `&scope=${encodeURIComponent(this.config.get.SCOPE_UPLOAD)}`;
+      `&scope=${encodeURIComponent(scopes)}`;
 
       // 'https://accounts.google.com/o/oauth2/v2/auth' +
       // `?client_id=${this.config.get.CLIENT_ID}` +
@@ -61,8 +68,11 @@ export class AuthApiService {
     return of(fakeChannels).pipe(delay(600));
     return this.http.get<Channel[]>(this.config.get.API_GET_LINKED_CHANNELS);
   }
-}
 
+  saveLinkedChannel(Channel: Channel): Observable<Channel> {
+    return this.http.post<Channel>(this.config.get.API_SET_LINKED_CHANNELS, Channel);
+  }
+}
 
 export interface AuthResponse {
   jwtToken: string;
@@ -73,4 +83,3 @@ export interface LoginCredentials {
   email: string;
   password: string;
 }
-

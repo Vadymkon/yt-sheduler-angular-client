@@ -17,8 +17,8 @@ export class YoutubeFacadeService {
   config = inject(AppConfigService);
   private cache = inject(CacheService);
 
-  addChannelViaGoogleAuth() {
-    this.authApi.addChannelViaGoogleAuth();
+  redirectToGoogleAuthChannel() {
+    this.authApi.redirectToGoogleAuthChannel();
   }
 
   // DEBUG:

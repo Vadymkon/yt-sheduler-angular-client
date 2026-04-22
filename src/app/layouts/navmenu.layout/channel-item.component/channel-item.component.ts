@@ -1,4 +1,4 @@
-import { Component, inject, input, output } from '@angular/core';
+import { Component, computed, inject, input, output } from '@angular/core';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
@@ -24,7 +24,6 @@ export class ChannelItemComponent {
   readonly dialog = inject(MatDialog);
   channel = input.required<Channel>();
   toggleEvent = output<boolean>();
-
   openChannelSettings() {
     this.dialog.open(DialogChannelSettings, {data: this.channel});
   }

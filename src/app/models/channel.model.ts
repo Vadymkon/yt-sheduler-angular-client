@@ -6,4 +6,5 @@ export class Channel {
   photoUrl?: string;
   shedule?: SchedulePattern;
   platform?: string;
+  accessToken?: string;
 }

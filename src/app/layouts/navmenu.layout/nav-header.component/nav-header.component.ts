@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { Channel } from '../../../models/channel.model';
 import { MatDivider } from '@angular/material/list';
