@@ -39,7 +39,7 @@ export class ScheduleDomainService {
       refDate.setHours(Math.floor((nextSlot % 1440) / 60), nextSlot % 60, 0, 0);
 
       // Return updated video
-      return { ...video, publishDate: refDate, publishStatus: 'updated' };
+      return { ...video, publishDate: refDate };
     });
   }
 }
