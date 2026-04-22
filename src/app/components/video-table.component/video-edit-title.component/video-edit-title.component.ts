@@ -24,7 +24,8 @@ export class VideoEditTitleComponent {
   video = input.required<Video>();
 
   saveAsDraft($event: Event) {
-    this.video().publishStatus = 'updated';
+    if (!this.video().file) // if it is unpublished one, then it should not be remarked
+      this.video().publishStatus = 'updated';
     this.video().title = this.textAreaRef.nativeElement.value;
   }
 }

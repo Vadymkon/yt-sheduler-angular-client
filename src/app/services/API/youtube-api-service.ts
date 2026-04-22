@@ -38,8 +38,7 @@ export class YoutubeApiService {
     }
 
     const uploadHeaders = new HttpHeaders({
-      'Content-Type': file.type,
-      'Content-Length': file.size.toString()
+      'Content-Type': file.type
     });
 
     const uploadResult = await firstValueFrom(
@@ -71,9 +70,9 @@ export class YoutubeApiService {
   // ---------------------------------------------------------
   // GET A LIST OF VIDEOS BY ID
   // ---------------------------------------------------------
-  async getVideosByIds(videoIds: string[], token: string): Promise<any[]> {
+  getVideosByIds(videoIds: string[], token: string): Observable<any> {
     if (!videoIds || videoIds.length === 0) {
-      return [];
+      return of([]);
     }
 
     const idsString = videoIds.join(',');
@@ -84,11 +83,7 @@ export class YoutubeApiService {
       'Accept': 'application/json'
     });
 
-    const response = await firstValueFrom(
-      this.http.get<any>(url, { headers })
-    );
-
-    return response.items || [];
+    return this.http.get<any>(url, { headers })
   }
 
   // ---------------------------------------------------------

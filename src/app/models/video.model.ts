@@ -4,6 +4,7 @@ export class Video {
   description!: string;
   thumbnailURL!: string;
   publishStatus!: string;
-  publishDate?: Date;
+  publishDate!: Date;
   owner?: string;
+  file?: File;
 }

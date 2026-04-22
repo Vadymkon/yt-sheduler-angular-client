@@ -14,4 +14,24 @@ export class WorkspaceFacadeService {
   public channels = signal<Channel[]>([]);
   public videos = signal<Video[]>([]);
   fileLabels = "";
+
+  createVideoFromFile(file: File): Video {
+    const titleWithoutExtension = file.name.replace(/\.[^/.]+$/, "");
+
+    const video: Video = {
+      id: crypto.randomUUID(),
+      title: titleWithoutExtension,
+      description: '',
+      thumbnailURL: 'assets/images/default-thumbnail.png',
+      publishStatus: 'unpublished',
+      publishDate: new Date(),
+      file: file
+    };
+
+    return video;
+  }
+
+  createVideosFromFiles(files: File[]): Video[] {
+    return files.map(f => this.createVideoFromFile(f));
+  }
 }

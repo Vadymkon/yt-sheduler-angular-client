@@ -37,7 +37,14 @@ export class VideoEditDateComponent {
   video = input.required<Video>();
 
   handleNewDate($event: MatDatepickerInputEvent<any, any>) {
-    this.video().publishStatus = "updated";
-    this.video().publishDate = $event.value;
+    if (!this.video().file) // if it is unpublished one, then it should not be remarked
+      this.video().publishStatus = "updated";
+    this.video().publishDate.setDate($event.value.getDate());
+  }
+
+  handleNewTime($event: Date) {
+    if (!this.video().file) // if it is unpublished one, then it should not be remarked
+      this.video().publishStatus = "updated";
+    this.video().publishDate.setTime($event.getTime());
   }
 }

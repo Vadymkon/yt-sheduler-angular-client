@@ -17,7 +17,8 @@ export class VideoEditThumbnailComponent {
     const input = $event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       const file = input.files[0];
-      this.video().publishStatus = "updated";
+      if (!this.video().file) // if it is unpublished one, then it should not be remarked
+        this.video().publishStatus = "updated";
       this.video().thumbnailURL = URL.createObjectURL(file);
       console.log('file handled: ', this.video());
     }

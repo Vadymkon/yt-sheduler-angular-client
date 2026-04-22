@@ -37,6 +37,10 @@ export class FileDragndropLayout {
       );
       this.workspaceService.files = onlyVideos;
       this.workspaceService.fileLabels = onlyVideos.map((x) => x.name).join(', ');
+      this.workspaceService.videos.update(currentVideos => [
+        ...this.workspaceService.createVideosFromFiles(onlyVideos),
+        ...currentVideos
+      ]);
       console.log('Files dropped:', onlyVideos);
     }
   }

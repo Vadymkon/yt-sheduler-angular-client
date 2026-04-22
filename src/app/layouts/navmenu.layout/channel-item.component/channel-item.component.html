@@ -2,7 +2,7 @@
      matRipple
      [class.selected]="cb.checked"
      (click)="cb.toggle(); toggleEvent.emit(cb.checked)">
-  <mat-checkbox #cb (click)="$event.stopPropagation();"></mat-checkbox>
+  <mat-checkbox #cb (click)="$event.stopPropagation(); toggleEvent.emit(cb.checked)"></mat-checkbox>
   <img priority class="channel-avatar" width="40" height="40" [ngSrc]="channel().photoUrl ?? 'https://material.angular.dev/assets/img/examples/shiba1.jpg'"/>
   <div class="channel-text">
     <span class="channel-title">{{ channel().title }}</span>

@@ -29,21 +29,40 @@ export class FileGetterComponent {
     if (files?.length) {
       this.workspaceService.files = Array.from(files);
       this.workspaceService.fileLabels = Array.from(files).map((x) => x.name).join(', ');
+      this.workspaceService.videos.update(currentVideos => [
+        ...currentVideos,
+        ...this.workspaceService.createVideosFromFiles(Array.from(files))
+      ]);
     }
   }
 
   async uploadChanges() {
-    const videos = this.workspaceService
+    const videosToPublish = this.workspaceService
+      .videos()
+      .filter((video) => video.publishStatus == 'unpublished');
+    const videosToUpdate = this.workspaceService
       .videos()
       .filter((video) => video.publishStatus == 'updated');
-    const channelAccessKey = this.workspaceService
-      .channels()
-      .find((channel: Channel) => videos.map((x) => x.owner).includes(channel.title))?.accessToken;
+
+    let channelAccessKey = this.workspaceService
+      .channels() // get AccessKey
+      .find((channel: Channel) => videosToUpdate.map((x) => x.owner).includes(channel.title))?.accessToken;
+    if (!channelAccessKey) // if no accessCode
+      channelAccessKey = this.workspaceService.channels().filter(c => c.selected)[0].accessToken;
+
     if (channelAccessKey) {
-      let result = await this.youtubeService.updateVideos(videos, channelAccessKey).then(x => {
-        // update videos
-        this.refreshVideos();
-      });
+      // try to upload
+      let resultPublished = await this.youtubeService.uploadVideos(videosToPublish, channelAccessKey)
+        // if not try to update
+        .then(async (y) => {
+          let resultUpdated = await this.youtubeService.updateVideos(videosToUpdate, channelAccessKey)
+            // only then refresh videos
+            .then((x) => {
+              // update videos
+              this.refreshVideos();
+            });
+        });
+
     }
   }
 

@@ -6,7 +6,7 @@ import { AppConfigService } from '../app-config-service';
 import { Video } from '../../models/video.model';
 import { YoutubeApiService } from '../API/youtube-api-service';
 import { Channel } from '../../models/channel.model';
-import { firstValueFrom, forkJoin, map, Observable, of } from 'rxjs';
+import { firstValueFrom, forkJoin, from, map, Observable, of, switchMap } from 'rxjs';
 import { VideoUploadPayload } from '../../models/youtube-api-video.model';
 import { ToastService } from '../toast-service';
 import { LangService } from '../lang.service';
@@ -72,14 +72,32 @@ export class YoutubeFacadeService {
       return of([]);
     }
 
-    const requests = channels.map((x) =>
+    // get base info about videos
+    const requests = channels.map((channel) =>
       this.youtubeApi
-        .getVideosByChannelId(x.userId, x.accessToken)
-        .pipe(map((response) => this.makeVideosFromResponse(response) || [])),
+        .getVideosByChannelId(channel.userId, channel.accessToken)
+        .pipe(map((response) => this.makeVideosFromResponse(response) || []))
     );
 
-    // multithreading security (waitForAll)
-    return forkJoin(requests).pipe(map((results) => results.flat()));
+    // wait For all reqs
+    return forkJoin(requests).pipe(
+      // switchMap to get first data and process it
+      switchMap((results: Video[][]) => {
+        const detailedObservables = results.map((videos) => {
+          const videosIDs = videos.map(video => video.id);
+          const ownerAccessToken = channels.find(channel => channel.title == videos[0].owner)?.accessToken!;
+          return this.youtubeApi.getVideosByIds(videosIDs, ownerAccessToken).pipe(
+            // merge info
+            map((detailedResponse) => this.mergeStatusIntoVideos(videos, detailedResponse))
+          );
+        });
+        // fork waits for all Observables
+        return forkJoin(detailedObservables);
+      }),
+
+      // Video[][] => Video[]
+      map((nestedVideos: Video[][]) => nestedVideos.flat())
+    );
   }
 
   mapVideoToUploadPayload(video: Video, categoryId: string = '22'): VideoUploadPayload {
@@ -119,7 +137,7 @@ export class YoutubeFacadeService {
 
     const fileToUpload = new File([blob], 'thumbnail.jpg', { type: blob.type });
 
-    return firstValueFrom( this.youtubeApi.updateThumbnail(video.id, fileToUpload, accessToken))
+    return firstValueFrom(this.youtubeApi.updateThumbnail(video.id, fileToUpload, accessToken));
   }
 
   async updateVideo(video: Video, accessToken: string) {
@@ -128,7 +146,7 @@ export class YoutubeFacadeService {
       await this.uploadThumbnail(video, accessToken);
     }
     return firstValueFrom(
-      this.youtubeApi.updateVideo(video.id, accessToken, this.mapVideoToUploadPayload(video))
+      this.youtubeApi.updateVideo(video.id, accessToken, this.mapVideoToUploadPayload(video)),
     );
   }
 
@@ -144,6 +162,36 @@ export class YoutubeFacadeService {
       throw error;
       return;
     }
+  }
+
+  async uploadVideo(video: Video, accessToken: string) {
+    if (video.publishStatus == 'unpublished')
+        this.youtubeApi.uploadVideoDirectly(video.file!, accessToken, this.mapVideoToUploadPayload(video))
+  }
+
+  async uploadVideos(videos: Video[], accessToken: string) {
+    const requests = videos.map((v) =>
+      this.uploadVideo(v, accessToken),
+    );
+
+    // multithreading security (waitForAll)
+    return forkJoin(requests).pipe(map((results) => results.flat()));
+  }
+
+  private mergeStatusIntoVideos(baseVideos: Video[], detailsResponse: any): Video[] {
+    const detailedItems = detailsResponse?.items || [];
+
+    return baseVideos.map(video => {
+      const detail = detailedItems.find((item: any) => item.id === video.id); // get item by id
+      if (detail) {
+        const publishDateRaw = detail.status?.publishAt || detail.snippet?.publishedAt; // raw publish date
+        video.publishDate = publishDateRaw ? new Date(publishDateRaw) : video.publishDate; // replace
+        if (detail.status?.privacyStatus === 'private' && detail.status?.publishAt) {
+          video.publishStatus = 'scheduled'; // change status
+        }
+      }
+      return video;
+    });
   }
 }
 
