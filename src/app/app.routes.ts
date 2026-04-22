@@ -9,7 +9,8 @@ export const routes: Routes = [
   {
     path: '',
     title: '',
-    component: MainApp,
+    // component: MainApp,
+    loadComponent: () => import('./pages/main-app/main-app').then(m => m.MainApp),
     canActivate: [authGuard],
     resolve: {
       channelsData: () => inject(AuthFacadeService).getLinkedChannels(),
@@ -18,6 +19,7 @@ export const routes: Routes = [
   {
     path: 'login',
     title: 'Login',
-    component: LoginPage,
+    // component: LoginPage,
+    loadComponent: () => import('./pages/login.page/login.page').then(m => m.LoginPage),
   },
 ];
