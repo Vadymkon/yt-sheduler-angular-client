@@ -38,8 +38,32 @@ export class AuthFacadeService {
     if (token && user) {
       this.authState.updateAuth(user, token);
     }
-  }
 
+    // RESTORE CACHED CHANNELS
+    const cachedChannels = this.cache.get<Channel[]>('linked_channels');
+    if (cachedChannels) {
+      const rehydratedChannels = cachedChannels.map((channel) => {
+        if (channel.shedule && channel.shedule.schedule) {
+          channel.shedule.schedule = channel.shedule.schedule.map((day) => ({
+            ...day,
+            // String to Date
+            times: day.times.map((timeStr) => new Date(timeStr)),
+          }));
+        }
+        return channel;
+      });
+
+      // Add to workspace signal
+      this.workspaceService.channels.update(currentChannels => {
+        // filter duplicates
+        const uniqueCachedChannels = rehydratedChannels.filter(
+          cached => !currentChannels.some(current => current.userId === cached.userId)
+        );
+        // merge
+        return [...currentChannels, ...uniqueCachedChannels];
+      });
+    }
+  }
   async loginWithPassword(credentials: LoginCredentials) {
     try {
       const response = await firstValueFrom(this.authApi.loginWithPassword(credentials));
@@ -54,22 +78,22 @@ export class AuthFacadeService {
   }
 
   // @ts-ignore
-  makeChannelFromResponse(response, accessToken:string):Channel | null {
+  makeChannelFromResponse(response, accessToken: string): Channel | null {
     if (!response?.items || response.items.length === 0) {
       return null;
     }
     const item = response.items[0];
 
-      const channel: Channel = {
-        userId: item.id,
-        title: item.snippet.title,
-        photoUrl: item.snippet.thumbnails.default.url,
-        platform: 'YouTube',
-        accessToken: accessToken,
-        shedule: templateSchedule,
-      };
+    const channel: Channel = {
+      userId: item.id,
+      title: item.snippet.title,
+      photoUrl: item.snippet.thumbnails.default.url,
+      platform: 'YouTube',
+      accessToken: accessToken,
+      shedule: templateSchedule,
+    };
 
-      return channel;
+    return channel;
   }
 
   async saveLinkedChannel() {
@@ -81,14 +105,21 @@ export class AuthFacadeService {
       const accessToken = hash.get('access_token');
 
       if (accessToken) {
-        const channel = this.makeChannelFromResponse(await firstValueFrom(this.youtubeApi.fetchYoutubeChannelInfo(accessToken)), accessToken);
+        const channel = this.makeChannelFromResponse(
+          await firstValueFrom(this.youtubeApi.fetchYoutubeChannelInfo(accessToken)),
+          accessToken,
+        );
         if (channel) {
           const responseFromOwnAPI = await firstValueFrom(this.authApi.saveLinkedChannel(channel)); // API
-          this.workspaceService.channels.update(channels => [...channels, channel]); // Component State
+          this.workspaceService.channels.update((channels) => {
+            const updatedChannels = [...channels, channel];
+            this.cache.set('linked_channels', updatedChannels);
+
+            return updatedChannels;
+          }); // Component State
         }
       }
-    }
-    catch (error) {
+    } catch (error) {
       console.error('Помилка додання каналу:', error);
     }
   }
@@ -104,8 +135,7 @@ export class AuthFacadeService {
         this.saveSession(response.user, response.jwtToken);
       }
       return true;
-    }
-    catch (error) {
+    } catch (error) {
       console.error('Помилка авторизації:', error);
 
       return false;
@@ -132,6 +162,4 @@ export class AuthFacadeService {
   getLinkedChannels() {
     return this.authApi.getLinkedChannels();
   }
-
-
 }

@@ -22,7 +22,6 @@ import { firstValueFrom } from 'rxjs';
 export class ItemSelectListComponent {
   protected readonly ls = inject(LangService);
   protected readonly workspaceService = inject(WorkspaceFacadeService);
-  protected readonly channels = this.workspaceService.channels;
   protected readonly youtubeService = inject(YoutubeFacadeService);
 
   async chooseChannel(channel: Channel, $event: boolean) {

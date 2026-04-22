@@ -26,6 +26,7 @@ import { StepCountComponent } from './step2-count.component/step-count.component
 import { StepTimesComponent } from './step3-times.component/step-times.component';
 import { SchedulePattern, WeeklyScheduleItem } from '../../models/schedule-pattern.model';
 import { Channel } from '../../models/channel.model';
+import { WorkspaceFacadeService } from '../../services/Facade/workspace-facade-service';
 
 
 @Component({
@@ -58,6 +59,7 @@ export class DialogChangeChannelShedule {
   readonly dialogRef = inject(MatDialogRef<DialogChangeChannelShedule>);
   private _formBuilder = inject(FormBuilder);
   readonly channelData = inject<Channel>(MAT_DIALOG_DATA);
+  protected readonly workspaceService = inject(WorkspaceFacadeService);
 
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
@@ -113,6 +115,7 @@ export class DialogChangeChannelShedule {
       schedule.schedule.push(a);
     });
     this.channelData.shedule = schedule;
+    this.workspaceService.channels.update((channels) => [...channels]); //refresh channels list
     this.dialogRef.close();
   }
 

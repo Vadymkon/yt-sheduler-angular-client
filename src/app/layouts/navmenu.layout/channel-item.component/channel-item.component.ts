@@ -26,6 +26,6 @@ export class ChannelItemComponent {
   toggleEvent = output<boolean>();
 
   openChannelSettings() {
-    this.dialog.open(DialogChannelSettings, {data: this.channel});
+    this.dialog.open(DialogChannelSettings, {data: this.channel()});
   }
 }

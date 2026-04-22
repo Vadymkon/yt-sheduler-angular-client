@@ -32,7 +32,15 @@ export class App {
   }
 
   async ngOnInit() {
-    this.workspaceService.channels.set(await firstValueFrom(this.authService.getLinkedChannels()));
+    const linkedChannels= await firstValueFrom(this.authService.getLinkedChannels());
+    this.workspaceService.channels.update(currentChannels => {
+      // filter duplicates
+      const uniqueCachedChannels = linkedChannels.filter(
+        cached => !currentChannels.some(current => current.userId === cached.userId)
+      );
+      // merge
+      return [...currentChannels, ...uniqueCachedChannels];
+    });
     this.workspaceService.videos.set
     // update videos
     await firstValueFrom(this.youtubeService.getVideos
