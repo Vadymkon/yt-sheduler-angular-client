@@ -12,8 +12,12 @@
   "API_GENERATE_TITLE_AI": "/api/ai/title",
 
   "CLIENT_ID": "427942502747-q1sn2mpc58vk91bifok6qgh3isl9m1bs.apps.googleusercontent.com",
-  "REDIRECT_URI": "http://localhost:4200",
-  "REDIRECT_URI_LOGIN": "http://localhost:4200/login",
+
+  "REDIRECT_URI_LOCALHOST": "http://localhost:4200",
+  "REDIRECT_URI_LOGIN_LOCALHOST": "http://localhost:4200/login",
+  "REDIRECT_URI": "https://yt-sheduler.pages.dev/",
+  "REDIRECT_URI_LOGIN": "https://yt-sheduler.pages.dev/login",
+
   "SCOPE_UPLOAD": "https://www.googleapis.com/auth/youtube.upload",
   "SCOPE_READONLY": "https://www.googleapis.com/auth/youtube.readonly",
   "SCOPE_MANAGE": "https://www.googleapis.com/auth/youtube",
