@@ -2,7 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppConfigService } from '../app-config-service';
 import { VideoUploadPayload } from '../../models/youtube-api-video.model';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, Observable, of } from 'rxjs';
+import { Channel } from '../../models/channel.model';
 
 // DEBUG: review this class. Maybe make return http and process it in Facade
 
@@ -110,5 +111,39 @@ export class YoutubeApiService {
     );
 
     return response;
+  }
+
+  // ---------------------------------------------------------
+  // GET CHANNEL DATA
+  // ---------------------------------------------------------
+  fetchYoutubeChannelInfo(accessToken: string): Observable<Object>{
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${accessToken}`
+    });
+
+    return this.http.get(this.config.get.YOUTUBE_API_GET_CHANNEL_DATA, { headers });
+  }
+
+  // ---------------------------------------------------------
+  // GET VIDEOS BY CHANNEL ID
+  // ---------------------------------------------------------
+  getVideosByChannelId(
+    channelId: string | undefined,
+    token: string | undefined,
+    maxResults: number = 50): Observable<any> {
+    if (!channelId || !token) {
+      return of(null);
+    }
+    // part=snippet - basic data (title, thumbnail, date)
+    // type=video - exclude channels and playlists
+    // order=date - sorting
+    const url = `${this.config.get.YOUTUBE_API_SEARCH}?part=snippet&channelId=${channelId}&type=video&order=date&maxResults=${maxResults}`;
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/json'
+    });
+
+    return this.http.get<any>(url, { headers });
   }
 }

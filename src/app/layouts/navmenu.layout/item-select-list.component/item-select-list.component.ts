@@ -11,6 +11,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { WorkspaceFacadeService } from '../../../services/Facade/workspace-facade-service';
 import { FormArray } from '@angular/forms';
 import { YoutubeFacadeService } from '../../../services/Facade/youtube-facade-service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-item-select-list',
@@ -24,5 +25,13 @@ export class ItemSelectListComponent {
   protected readonly channels = this.workspaceService.channels;
   protected readonly youtubeService = inject(YoutubeFacadeService);
 
-  chooseChannel(channel: Channel, $event: boolean) {}
+  async chooseChannel(channel: Channel, $event: boolean) {
+    // update Channel
+    channel.selected = $event;
+    this.workspaceService.channels.update((channels) => [...channels]); //refresh channels list
+    // update Video
+    this.workspaceService.videos.set(
+        await firstValueFrom(this.youtubeService.getVideos(this.workspaceService.channels().filter((channel) => channel.selected)))
+    );
+  }
 }

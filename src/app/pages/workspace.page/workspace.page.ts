@@ -3,7 +3,6 @@ import { ModeSwitcherComponent } from '../../components/mode-switcher.component/
 import { FileGetterComponent } from '../../components/file-getter.component/file-getter.component';
 import { WhatDeviceService } from '../../services/what-device.service';
 import { VideoTableComponent } from '../../components/video-table.component/video-table.component';
-import { FAKE_VIDEOS } from '../../../assets/fakedata';
 import { VideoCalendarComponent } from '../../components/video-calendar.component/video-calendar.component';
 import {
   VideoTableScrollableComponent
@@ -26,6 +25,4 @@ export class WorkspacePage {
   protected readonly whatDeviceService = inject(WhatDeviceService);
   protected readonly workspaceService = inject(WorkspaceFacadeService);
   protected readonly authService = inject(AuthFacadeService);
-
-  protected readonly FAKE_VIDEOS = FAKE_VIDEOS;
 }

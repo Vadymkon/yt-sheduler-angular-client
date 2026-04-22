@@ -1,10 +1,6 @@
 {
   "appName": "AI Uploader",
-  "CLIENT_ID": "427942502747-q1sn2mpc58vk91bifok6qgh3isl9m1bs.apps.googleusercontent.com",
-  "REDIRECT_URI": "http://localhost:4200",
-  "REDIRECT_URI_LOGIN": "http://localhost:4200/login",
-  "SCOPE_UPLOAD": "https://www.googleapis.com/auth/youtube.upload",
-  "SCOPE_READONLY": "https://www.googleapis.com/auth/youtube.readonly",
+
   "API_MAKE_SCHEDULE": "/api/makeSchedule",
   "API_SEND_FEEDBACK": "/api/send_feedback",
   "API_LOGIN_GOOGLE": "/api/login/GOOGLE",
@@ -13,8 +9,16 @@
   "API_GET_LINKED_CHANNELS": "/api/GET_LINKED_CHANNELS",
   "API_SET_LINKED_CHANNELS": "/api/SET_LINKED_CHANNELS",
   "API_LOGIN": "/api/login",
+
+  "CLIENT_ID": "427942502747-q1sn2mpc58vk91bifok6qgh3isl9m1bs.apps.googleusercontent.com",
+  "REDIRECT_URI": "http://localhost:4200",
+  "REDIRECT_URI_LOGIN": "http://localhost:4200/login",
+  "SCOPE_UPLOAD": "https://www.googleapis.com/auth/youtube.upload",
+  "SCOPE_READONLY": "https://www.googleapis.com/auth/youtube.readonly",
   "YOUTUBE_API_UPLOAD_VIDEO": "https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status",
   "YOUTUBE_API_UPDATE_VIDEO": "https://www.googleapis.com/youtube/v3/videos?part=snippet,status",
   "YOUTUBE_API_GET_VIDEOS_INFO": "https://www.googleapis.com/youtube/v3/videos?part=snippet,status&id=",
-  "YOUTUBE_API_SET_THUMBNAIL": "https://www.googleapis.com/upload/youtube/v3/thumbnails/set"
+  "YOUTUBE_API_SET_THUMBNAIL": "https://www.googleapis.com/upload/youtube/v3/thumbnails/set",
+  "YOUTUBE_API_GET_CHANNEL_DATA": "https://www.googleapis.com/youtube/v3/channels?part=snippet&mine=true",
+  "YOUTUBE_API_SEARCH": "https://www.googleapis.com/youtube/v3/search"
 }

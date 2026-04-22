@@ -1,14 +1,14 @@
-@if (FAKE_VIDEOS.length != 0) {
+@if (workspaceService.videos().length != 0) {
   @if (workspaceService.mode == 'calendar') {
-    <app-video-calendar [videos]="FAKE_VIDEOS"></app-video-calendar>
+    <app-video-calendar [videos]="workspaceService.videos()"></app-video-calendar>
   }
   @else
   {
-    <app-video-table-scrollable [videos]="FAKE_VIDEOS"></app-video-table-scrollable>
+    <app-video-table-scrollable [videos]="workspaceService.videos()"></app-video-table-scrollable>
   }
 }
 
 <!-- app-file-getter -->
-<div [class]="whatDeviceService.isPhone() || FAKE_VIDEOS.length!=0 ? 'footer' : 'centered-element'">
+<div [class]="whatDeviceService.isPhone() || workspaceService.videos().length!=0 ? 'footer' : 'centered-element'">
   <app-file-getter></app-file-getter>
 </div>

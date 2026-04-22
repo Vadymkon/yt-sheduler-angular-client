@@ -12,12 +12,12 @@ export const routes: Routes = [
     component: MainApp,
     canActivate: [authGuard],
     resolve: {
-      channelsData: () => inject(AuthFacadeService).getLinkedChannels()
-    }
+      channelsData: () => inject(AuthFacadeService).getLinkedChannels(),
+    },
   },
   {
     path: 'login',
     title: 'Login',
-    component: LoginPage
+    component: LoginPage,
   },
 ];

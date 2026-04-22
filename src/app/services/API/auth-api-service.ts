@@ -70,6 +70,7 @@ export class AuthApiService {
   }
 
   saveLinkedChannel(Channel: Channel): Observable<Channel> {
+    return of(fakeChannels[0]).pipe(delay(600));
     return this.http.post<Channel>(this.config.get.API_SET_LINKED_CHANNELS, Channel);
   }
 }

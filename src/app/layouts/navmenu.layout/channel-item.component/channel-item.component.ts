@@ -24,6 +24,7 @@ export class ChannelItemComponent {
   readonly dialog = inject(MatDialog);
   channel = input.required<Channel>();
   toggleEvent = output<boolean>();
+
   openChannelSettings() {
     this.dialog.open(DialogChannelSettings, {data: this.channel});
   }

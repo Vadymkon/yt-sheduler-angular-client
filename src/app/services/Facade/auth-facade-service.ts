@@ -7,11 +7,13 @@ import { User } from '../../models/user.model';
 import { Router } from '@angular/router';
 import { WorkspaceFacadeService } from './workspace-facade-service';
 import { Channel } from '../../models/channel.model';
+import { YoutubeApiService } from '../API/youtube-api-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthFacadeService {
+  private youtubeApi = inject(YoutubeApiService);
   private authApi = inject(AuthApiService);
   private authState = inject(AuthStateDomainService);
   private workspaceService = inject(WorkspaceFacadeService);
@@ -50,32 +52,43 @@ export class AuthFacadeService {
     }
   }
 
-  makeChannel():Channel {
-    return new Channel()
+  // @ts-ignore
+  makeChannelFromResponse(response, accessToken:string):Channel | null {
+    if (!response?.items || response.items.length === 0) {
+      return null;
+    }
+    const item = response.items[0];
+
+      const channel: Channel = {
+        userId: item.id,
+        title: item.snippet.title,
+        photoUrl: item.snippet.thumbnails.default.url,
+        platform: 'YouTube',
+        accessToken: accessToken
+      };
+
+      return channel;
   }
 
   async saveLinkedChannel() {
+    // DEBUG: Serverless
+    // Reacts if something in URL already about new channel
     try {
       // parse access_token from URL hash
       const hash = new URLSearchParams(window.location.hash.substring(1));
       const accessToken = hash.get('access_token');
 
       if (accessToken) {
-        // const channel = this.makeChannel();
-        // const response = await firstValueFrom(this.authApi.saveLinkedChannel(channel)); // API
-        // this.workspaceService.channels.apply(channel); // Component State
+        const channel = this.makeChannelFromResponse(await firstValueFrom(this.youtubeApi.fetchYoutubeChannelInfo(accessToken)), accessToken);
+        if (channel) {
+          const responseFromOwnAPI = await firstValueFrom(this.authApi.saveLinkedChannel(channel)); // API
+          this.workspaceService.channels.update(channels => [...channels, channel]); // Component State
+        }
       }
-      return true;
     }
     catch (error) {
-      console.error('Помилка авторизації:', error);
-
-      return false;
+      console.error('Помилка додання каналу:', error);
     }
-  }
-
-  async saveGoogleChannel() {
-
   }
 
   async loginWithGoogleCode() {
@@ -117,4 +130,6 @@ export class AuthFacadeService {
   getLinkedChannels() {
     return this.authApi.getLinkedChannels();
   }
+
+
 }

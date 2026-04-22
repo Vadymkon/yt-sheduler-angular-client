@@ -7,4 +7,5 @@ export class Channel {
   shedule?: SchedulePattern;
   platform?: string;
   accessToken?: string;
+  selected?: boolean;
 }
