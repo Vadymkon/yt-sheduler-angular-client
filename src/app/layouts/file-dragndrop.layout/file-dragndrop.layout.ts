@@ -10,6 +10,9 @@ import { WhatDeviceService } from '../../services/what-device.service';
 import { MatIcon } from '@angular/material/icon';
 import { LangService } from '../../services/lang.service';
 import { WorkspaceFacadeService } from '../../services/Facade/workspace-facade-service';
+import { ScheduleFacadeService } from '../../services/Facade/schedule-facade-service';
+import { Channel } from '../../models/channel.model';
+import { AiFacadeService } from '../../services/Facade/ai-facade-service';
 
 @Component({
   selector: 'app-file-dragndrop',
@@ -20,26 +23,37 @@ import { WorkspaceFacadeService } from '../../services/Facade/workspace-facade-s
 export class FileDragndropLayout {
   readonly whatDeviceService = inject(WhatDeviceService);
   readonly workspaceService = inject(WorkspaceFacadeService);
+  readonly scheduleService = inject(ScheduleFacadeService);
   readonly ls = inject(LangService);
   isFileDraggedOver: boolean = false;
+  readonly aiService = inject(AiFacadeService);
 
-  onFileDrop($event: DragEvent) {
+  async onFileDrop($event: DragEvent) {
     $event.preventDefault();
     $event.stopPropagation();
     this.isFileDraggedOver = false;
 
+    const selectedChannels: Channel[] = this.workspaceService
+      .channels()
+      .filter((channel) => channel.selected);
     const files = $event.dataTransfer?.files;
     if (files) {
       // DEBUG: TO-DO: this 'filter'-logic should be in service, not here
-      let onlyVideos = Array.from(files).filter(file =>
-        file.type.startsWith('video/') ||
-        ['.mp4', '.mov', '.avi', '.mkv'].some(ext => file.name.toLowerCase().endsWith(ext))
+      let onlyVideos = Array.from(files).filter(
+        (file) =>
+          file.type.startsWith('video/') ||
+          ['.mp4', '.mov', '.avi', '.mkv'].some((ext) => file.name.toLowerCase().endsWith(ext)),
       );
       this.workspaceService.files = onlyVideos;
       this.workspaceService.fileLabels = onlyVideos.map((x) => x.name).join(', ');
-      this.workspaceService.videos.update(currentVideos => [
-        ...this.workspaceService.createVideosFromFiles(onlyVideos),
-        ...currentVideos
+      const scheduledVideos = await this.scheduleService.makeScheduleForChannels(
+        selectedChannels,
+        this.workspaceService.createVideosFromFiles(onlyVideos),
+      );
+      const videosWithTitle = await this.aiService.replaceVideosTitle(scheduledVideos);
+      this.workspaceService.videos.update((currentVideos) => [
+        ...videosWithTitle,
+        ...currentVideos,
       ]);
       console.log('Files dropped:', onlyVideos);
     }

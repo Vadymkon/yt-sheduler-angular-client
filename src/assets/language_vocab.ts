@@ -46,6 +46,8 @@ export default {
     scheduleIsMaden: "Schedule is maden",
     errorMakingSchedule: "Error Making Schedule",
     videosUpdated: "Videos are updated successfully!",
+    titleIsGenerated: "Title is generated successfully!",
+    errorGeneratingTitle: "Error making title.",
   },
   "ua": {
     languageName: "Українська",
@@ -94,6 +96,8 @@ export default {
     scheduleIsMaden: "Schedule is maden",
     errorMakingSchedule: "Error Making Schedule",
     videosUpdated: "Videos are updated successfully!",
+    titleIsGenerated: "Title is generated successfully!",
+    errorGeneratingTitle: "Error making title.",
   },
   "ja": {
     languageName: "日本語",
@@ -142,5 +146,7 @@ export default {
     scheduleIsMaden: "Schedule is maden",
     errorMakingSchedule: "Error Making Schedule",
     videosUpdated: "Videos are updated successfully!",
+    titleIsGenerated: "Title is generated successfully!",
+    errorGeneratingTitle: "Error making title.",
   },
 }

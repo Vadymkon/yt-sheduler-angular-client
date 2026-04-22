@@ -9,6 +9,7 @@
   "API_GET_LINKED_CHANNELS": "/api/GET_LINKED_CHANNELS",
   "API_SET_LINKED_CHANNELS": "/api/SET_LINKED_CHANNELS",
   "API_LOGIN": "/api/login",
+  "API_GENERATE_TITLE_AI": "/api/ai/title",
 
   "CLIENT_ID": "427942502747-q1sn2mpc58vk91bifok6qgh3isl9m1bs.apps.googleusercontent.com",
   "REDIRECT_URI": "http://localhost:4200",

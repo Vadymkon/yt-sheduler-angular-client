@@ -7,12 +7,12 @@ import { Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class ScheduleApiService {
+export class AiApiService {
   http = inject(HttpClient);
   config = inject(AppConfigService);
 
-  makeSchedule(videos: Video[]) : Observable<string[]> {
-    return of(videos.map(video=> video.title));
-    return this.http.post<string[]>(this.config.get.API_MAKE_SCHEDULE, {videos});
+  generateTitleAI(video: Video):Observable<string> {
+    return of(video.title);
+    return this.http.post<string>(this.config.get.API_GENERATE_TITLE_AI, { video });
   }
 }

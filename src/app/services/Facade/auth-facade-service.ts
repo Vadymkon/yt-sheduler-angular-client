@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { WorkspaceFacadeService } from './workspace-facade-service';
 import { Channel } from '../../models/channel.model';
 import { YoutubeApiService } from '../API/youtube-api-service';
+import { templateSchedule } from '../../models/schedule-pattern.model';
 
 @Injectable({
   providedIn: 'root',
@@ -64,7 +65,8 @@ export class AuthFacadeService {
         title: item.snippet.title,
         photoUrl: item.snippet.thumbnails.default.url,
         platform: 'YouTube',
-        accessToken: accessToken
+        accessToken: accessToken,
+        shedule: templateSchedule,
       };
 
       return channel;
