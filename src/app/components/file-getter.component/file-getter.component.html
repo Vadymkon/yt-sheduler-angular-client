@@ -1,6 +1,6 @@
 <mat-form-field subscriptSizing="dynamic" class="styled-field" style="width: 100%;">
   <button matIconButton matPrefix (click)="fileInput.click()"><mat-icon>link</mat-icon></button>
-  <input matInput placeholder="{{ls.t.pasteVideosHere}}" [value]="workspaceService.fileLabels" ]>
+  <input matInput placeholder="{{ls.t.pasteVideosHere}}" [value]="workspaceService.fileLabels">
   <button matSuffix matButton="filled" (click)="uploadChanges()">{{ls.t.upload}}</button>
   <mat-hint>{{ls.t.getFileHint}}</mat-hint>
 </mat-form-field>
