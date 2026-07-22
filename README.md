@@ -3,6 +3,10 @@
 # Don't forget about: "To-do:" , "DEBUG:", "Fake"
 
 # LIVE: https://yt-sheduler.pages.dev/
+
+<img width="2111" height="1237" alt="screen1" src="https://github.com/user-attachments/assets/416a6ed9-1e42-49ae-9914-ef88fbceab06" />
+<img width="1267" height="1237" alt="screen2" src="https://github.com/user-attachments/assets/e12b7249-054c-4029-96f0-0fca41432990" />
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.6.
 
 ## Development server
