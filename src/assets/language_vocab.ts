@@ -22,7 +22,7 @@ export default {
     pubPerDay: "Publications/Day",
     publishingSchedule: "Publishing Schedule",
     publication: "Publication",
-    pasteVideosHere: "Paste video links here",
+    pasteVideosHere: "Paste videos (drag&drop)",
     getFileHint: "Or Drag&Drop video files (MP4, MOV, max 2GB)",
     import: "Import",
     upload: "Upload",
