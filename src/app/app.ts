@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { WorkspacePage } from './pages/workspace.page/workspace.page';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -29,9 +29,31 @@ export class App {
   constructor() {
     this.authService.restoreSession();
     this.authService.saveLinkedChannel(); // if there's some channel appeared
+
+    // every time when auth worked
+    effect(async () => {
+      const isAuth = this.authService.isAuthenticated();
+
+      // user did not login
+      if (!isAuth)
+      {
+        // reset
+        this.workspaceService.channels.set([]);
+        this.workspaceService.videos.set([]);
+        return;
+      }
+
+      // user has log in
+      try {
+        await this.initChannelsAndVideos();
+      }
+      catch (error) {
+        console.error('Failed to fetch workspace data:', error);
+      }
+    });
   }
 
-  async ngOnInit() {
+  async initChannelsAndVideos() {
     const linkedChannels= await firstValueFrom(this.authService.getLinkedChannels());
     this.workspaceService.channels.update(currentChannels => {
       // filter duplicates
@@ -45,5 +67,6 @@ export class App {
     // update videos
     await firstValueFrom(this.youtubeService.getVideos
     (this.workspaceService.channels().filter(channel => channel.selected)));
+
   }
 }

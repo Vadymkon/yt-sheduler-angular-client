@@ -14,6 +14,7 @@ import { templateSchedule } from '../../models/schedule-pattern.model';
   providedIn: 'root',
 })
 export class AuthFacadeService {
+  private readonly router = inject(Router);
   private youtubeApi = inject(YoutubeApiService);
   private authApi = inject(AuthApiService);
   private authState = inject(AuthStateDomainService);
@@ -97,7 +98,6 @@ export class AuthFacadeService {
   }
 
   async saveLinkedChannel() {
-    // DEBUG: Serverless
     // Reacts if something in URL already about new channel
     try {
       // parse access_token from URL hash
@@ -143,12 +143,6 @@ export class AuthFacadeService {
     }
   }
 
-  logout() {
-    this.authApi.logout();
-    this.authState.clear();
-    this.cache.clear();
-  }
-
   async signUpWithPassword(credentials: LoginCredentials) {
     try {
       const response = await firstValueFrom(this.authApi.signupWithPassword(credentials));
@@ -160,6 +154,14 @@ export class AuthFacadeService {
 
       return false;
     }
+  }
+
+  async logout() {
+    await firstValueFrom(this.authApi.logout());
+    this.authState.clear();
+    this.cache.clear();
+
+    await this.router.navigate(['/login']);
   }
   getLinkedChannels() {
     return this.authApi.getLinkedChannels();
