@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { AuthApiService, LoginCredentials } from '../API/auth-api-service';
+import { AuthApiService, GoogleLoginCredentials, LoginCredentials } from '../API/auth-api-service';
 import { AuthStateDomainService } from '../Domain/auth-state-domain-service';
 import { CacheService } from '../cache-service';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, map } from 'rxjs';
 import { User } from '../../models/user.model';
 import { Router } from '@angular/router';
 import { WorkspaceFacadeService } from './workspace-facade-service';
@@ -131,7 +131,8 @@ export class AuthFacadeService {
       const accessToken = hash.get('access_token');
 
       if (accessToken) {
-        const response = await firstValueFrom(this.authApi.loginWithGoogle(accessToken));
+        const payload: GoogleLoginCredentials = {payload: accessToken};
+        const response = await firstValueFrom(this.authApi.loginWithGoogle(payload));
         this.saveSession(response.user, response.jwtToken);
       }
       return true;

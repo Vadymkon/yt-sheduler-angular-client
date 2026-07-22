@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AppConfigService } from '../app-config-service';
 import { User } from '../../models/user.model';
-import { config, delay, Observable, of } from 'rxjs';
+import { config, delay, map, Observable, of } from 'rxjs';
 import { fakeChannels, MOCK_AUTH_RESPONSE } from '../../../assets/fakedata';
 import { Channel } from '../../models/channel.model';
 
@@ -15,12 +15,19 @@ export class AuthApiService {
 
   // for login
   redirectToGoogleAuth() {
+    const scopes = [
+      this.config.get.SCOPE_OPENID,
+      this.config.get.SCOPE_PROFILE,
+      this.config.get.SCOPE_EMAIL,
+      this.config.get.SCOPE_UPLOAD
+    ].join(' ');
+
     const url =
       'https://accounts.google.com/o/oauth2/v2/auth' +
       `?client_id=${this.config.get.CLIENT_ID}` +
       `&redirect_uri=${encodeURIComponent(this.config.get.REDIRECT_URI_LOGIN)}` +
       `&response_type=token` +
-      `&scope=${encodeURIComponent(this.config.get.SCOPE_UPLOAD)}`;
+      `&scope=${encodeURIComponent(scopes)}`;
 
     window.location.href = url;
   }
@@ -36,8 +43,9 @@ export class AuthApiService {
       `?client_id=${this.config.get.CLIENT_ID}` +
       `&redirect_uri=${encodeURIComponent(this.config.get.REDIRECT_URI)}` +
       `&response_type=token` +
-      `&scope=${encodeURIComponent(scopes)}`;
-
+      `&scope=${encodeURIComponent(scopes)}` +
+      `&prompt=consent`
+      ;
       // 'https://accounts.google.com/o/oauth2/v2/auth' +
       // `?client_id=${this.config.get.CLIENT_ID}` +
       // `&redirect_uri=${encodeURIComponent(this.config.get.REDIRECT_URI_LOGIN)}` +
@@ -48,10 +56,10 @@ export class AuthApiService {
     window.location.href = url;
   }
 
-  loginWithGoogle(code: string): Observable<AuthResponse> {
+  loginWithGoogle(payload: GoogleLoginCredentials): Observable<AuthResponse> {
     if (!this.config.IsServerAvaliable)
       return of(MOCK_AUTH_RESPONSE).pipe(delay(600));
-    return this.http.post<AuthResponse>(this.config.get.API_LOGIN_GOOGLE, { code });
+    return this.http.post<AuthResponse>(this.config.get.API_LOGIN_GOOGLE, payload );
   }
 
   loginWithPassword(credentials: LoginCredentials): Observable<AuthResponse> {
@@ -69,13 +77,17 @@ export class AuthApiService {
   getLinkedChannels(): Observable<Channel[]>  {
     if (!this.config.IsServerAvaliable)
       return of(fakeChannels).pipe(delay(600));
-    return this.http.get<Channel[]>(this.config.get.API_GET_LINKED_CHANNELS);
+    return this.http.get<{ channels:Channel[] }>(this.config.get.API_GET_LINKED_CHANNELS)
+      .pipe(map(res => res.channels));
   }
 
-  saveLinkedChannel(Channel: Channel): Observable<Channel> {
-    if (!this.config.IsServerAvaliable)
-      return of(fakeChannels[0]).pipe(delay(600));
-    return this.http.post<Channel>(this.config.get.API_SET_LINKED_CHANNELS, Channel);
+  saveLinkedChannel(channel: Channel | null): Observable<Channel | null> {
+    if (!this.config.IsServerAvaliable) return of(fakeChannels[0]).pipe(delay(600));
+    return this.http
+      .post<{
+        channels: Channel[];
+      }>(this.config.get.API_SET_LINKED_CHANNELS, { channels: [channel] })
+      .pipe(map(res => res.channels ? res.channels[0] : null));
   }
 
   logout(): Observable<any> {
@@ -93,4 +105,8 @@ export interface AuthResponse {
 export interface LoginCredentials {
   email: string;
   password: string;
+}
+
+export interface GoogleLoginCredentials {
+  payload: string;
 }

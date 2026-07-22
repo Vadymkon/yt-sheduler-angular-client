@@ -20,6 +20,9 @@
 
   "SCOPE_UPLOAD": "https://www.googleapis.com/auth/youtube.upload",
   "SCOPE_READONLY": "https://www.googleapis.com/auth/youtube.readonly",
+  "SCOPE_OPENID": "openid",
+  "SCOPE_PROFILE": "profile",
+  "SCOPE_EMAIL": "email",
   "SCOPE_MANAGE": "https://www.googleapis.com/auth/youtube",
   "YOUTUBE_API_UPLOAD_VIDEO": "https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status",
   "YOUTUBE_API_UPDATE_VIDEO": "https://www.googleapis.com/youtube/v3/videos?part=snippet,status",

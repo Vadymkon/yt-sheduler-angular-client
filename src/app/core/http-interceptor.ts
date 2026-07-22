@@ -1,27 +1,34 @@
 import { HttpInterceptorFn, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { tap } from 'rxjs';
-import { AppConfigService} from '../services/app-config-service';
 import { inject } from '@angular/core';
+import { AppConfigService } from '../services/app-config-service';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  // Clone request and add header
   const configService = inject(AppConfigService);
+  const isExternalUrl = req.url.startsWith('http://') || req.url.startsWith('https://');
+
+  // If URL is external, catch BASE_API_URL from our backend
+  const targetUrl = isExternalUrl
+    ? req.url
+    : `${configService.get.BASE_API_URL}${req.url}`;
+
+  // Setup cloning parameters
   const modifiedReq = req.clone({
-    url: req.url.startsWith('http') ? req.url : `${configService.get.BASE_API_URL}${req.url}`,
-    withCredentials: true // CookieAuthentication
+    url: targetUrl,
+    // turn on withCredentials ONLY for C# backend!
+    withCredentials: !isExternalUrl
   });
 
-  // Send changed request
   return next(modifiedReq).pipe(
     tap({
       next: (event) => {
         if (event instanceof HttpResponse) {
-          console.log('Server response');
+          console.log('Server response:', event.status);
         }
       },
-      error: (err) => {
+      error: (err: unknown) => {
         if (err instanceof HttpErrorResponse && err.status === 401) {
-          console.log('Unauthorized');
+          console.log('Unauthorized - требуется повторная авторизация');
         }
       }
     })
