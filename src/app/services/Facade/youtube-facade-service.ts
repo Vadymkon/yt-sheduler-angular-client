@@ -69,30 +69,37 @@ export class YoutubeFacadeService {
       return of([]);
     }
 
-    // get base info about videos
+    // 1. Retrieve the preliminary video metadata for each channel
     const requests = channels.map((channel) =>
-      this.youtubeApi
-        .getVideosByChannelId(channel.userId, channel.accessToken)
-        .pipe(map((response) => this.makeVideosFromResponse(response) || []))
+      this.youtubeApi.getVideosByChannelId(channel.userId, channel.accessToken).pipe(
+        map((response) => this.makeVideosFromResponse(response) || [])
+      )
     );
 
-    // wait For all reqs
     return forkJoin(requests).pipe(
-      // switchMap to get first data and process it
       switchMap((results: Video[][]) => {
-        const detailedObservables = results.map((videos) => {
+        // 2. Extract index 'i' to strictly correlate with the 'channels' array index
+        const detailedObservables = results.map((videos, i) => {
+          // Circumvent extraneous API calls if the channel is devoid of video content.
+          // Merely yield an empty array wrapped in an Observable.
+          if (videos.length === 0) {
+            return of([]);
+          }
+
           const videosIDs = videos.map(video => video.id);
-          const ownerAccessToken = channels.find(channel => channel.title == videos[0].owner)?.accessToken!;
+
+          // Utilize the specific access token corresponding to the channel owning these videos
+          const ownerAccessToken = channels[i].accessToken!;
+
           return this.youtubeApi.getVideosByIds(videosIDs, ownerAccessToken).pipe(
-            // merge info
             map((detailedResponse) => this.mergeStatusIntoVideos(videos, detailedResponse))
           );
         });
-        // fork waits for all Observables
+
         return forkJoin(detailedObservables);
       }),
 
-      // Video[][] => Video[]
+      // 3. Flatten the nested structures into a contiguous array of videos
       map((nestedVideos: Video[][]) => nestedVideos.flat())
     );
   }
