@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { HttpBackend, HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 
 import configJson from '../../assets/config.json';
@@ -9,15 +9,14 @@ type AppConfig = typeof configJson;
   providedIn: 'root'
 })
 export class AppConfigService {
+  public IsServerAvaliable = true;
   private config: AppConfig | undefined;
 
-  constructor(private http: HttpClient) {
-    this.loadConfig();
-  }
+  private readonly httpClient = new HttpClient(inject(HttpBackend));
 
   loadConfig(): Promise<void> {
     return firstValueFrom(
-      this.http.get<AppConfig>('/assets/config.json')
+      this.httpClient.get<AppConfig>('/assets/config.json')
     ).then(data => {
       this.config = data;
     });

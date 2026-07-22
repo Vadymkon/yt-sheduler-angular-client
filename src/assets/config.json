@@ -1,22 +1,22 @@
 {
   "appName": "AI Uploader",
 
-  "API_MAKE_SCHEDULE": "/api/makeSchedule",
-  "API_SEND_FEEDBACK": "/api/send_feedback",
-  "API_LOGIN_GOOGLE": "/api/login/GOOGLE",
-  "API_LOGIN_EMAIL": "/api/login/EMAIL",
-  "API_SIGNUP_EMAIL": "/api/signup/EMAIL",
-  "API_GET_LINKED_CHANNELS": "/api/GET_LINKED_CHANNELS",
-  "API_SET_LINKED_CHANNELS": "/api/SET_LINKED_CHANNELS",
-  "API_LOGIN": "/api/login",
-  "API_GENERATE_TITLE_AI": "/api/ai/title",
+  "BASE_API_URL": "https://localhost:7299",
+
+  "API_MAKE_SCHEDULE": "/api/schedules",
+  "API_SEND_FEEDBACK": "/api/feedback",
+  "API_LOGIN_GOOGLE": "/api/auth/google",
+  "API_LOGIN_EMAIL": "/api/auth/login",
+  "API_SIGNUP_EMAIL": "/api/auth/register",
+  "API_LOGOUT": "/api/auth/logout",
+  "API_GET_LINKED_CHANNELS": "/api/linked-channels",
+  "API_SET_LINKED_CHANNELS": "/api/linked-channels",
+  "API_GENERATE_TITLE_AI": "/api/ai-titles",
 
   "CLIENT_ID": "427942502747-q1sn2mpc58vk91bifok6qgh3isl9m1bs.apps.googleusercontent.com",
 
-  "REDIRECT_URI_LOCALHOST": "http://localhost:4200",
-  "REDIRECT_URI_LOGIN_LOCALHOST": "http://localhost:4200/login",
-  "REDIRECT_URI": "https://yt-sheduler.pages.dev/",
-  "REDIRECT_URI_LOGIN": "https://yt-sheduler.pages.dev/login",
+  "REDIRECT_URI": "http://localhost:4200",
+  "REDIRECT_URI_LOGIN": "http://localhost:4200/login",
 
   "SCOPE_UPLOAD": "https://www.googleapis.com/auth/youtube.upload",
   "SCOPE_READONLY": "https://www.googleapis.com/auth/youtube.readonly",

@@ -143,6 +143,7 @@ export class AuthFacadeService {
   }
 
   logout() {
+    this.authApi.logout();
     this.authState.clear();
     this.cache.clear();
   }
